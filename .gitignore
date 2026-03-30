@@ -1,0 +1,5 @@
+.vscode
+.prettierrc*
+# 環境設定
+.env
+.env.local
