@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件監聽</title>
+    <script src="app.js" defer></script>
+    <!-- async 與 HTML 一同解析 - 通常在引用外部 js (ex: 埋 GA code) 使用 -->
+  </head>
+  <body>
+    <h1>歡迎點我</h1>
+    <button id="minus">-</button>
+    <input type="number" id="counter" value="1" />
+    <button id="plus">+</button>
+    <section>
+      <h2>BMI 計算機</h2>
+      <form action="#">
+        <label for="bodyHeight">身高</label>
+        <input type="number" id="bodyHeight" />
+        <span>公分</span>
+        <br />
+        <label for="bodyWeight">體重</label>
+        <input type="number" id="bodyWeight" />
+        <span>公斤</span>
+        <br /><br />
+        <button id="calc">計算</button>
+      </form>
+      <h3>計算結果： <span id="result"></span></h3>
+    </section>
+    <div
+      class="ad"
+      style="width: 100px; height: 100px; background-color: antiquewhite"
+    >
+      <button id="close">x</button>
+    </div>
+  </body>
+</html>
