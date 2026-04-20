@@ -1,122 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <link
-      rel="shortcut icon"
-      href="https://i.pinimg.com/736x/78/c2/9a/78c29a4e52d1f29f81c6dd50d556ec0f.jpg"
-      type="image/x-icon"
-    />
-    <script src="main.js"></script>
-    <title>Git Practice - Self Introduction</title>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <div class="nav_item">
-          <a href="#home">
-            <img
-              src="https://preview.redd.it/usagi-is-not-even-fat-v0-5211hb4qecxe1.png?width=640&crop=smart&auto=webp&s=b8603d8de0049ae5cfbd40ed5991f50b0f348f0f"
-              alt="Home"
-          /></a>
-        </div>
-        <div class="nav_item">
-          <ul>
-            <li><a class="nunito-nav" href="#home">Home</a></li>
-            <li><a class="nunito-nav" href="#about">About</a></li>
-            <li><a class="nunito-nav" href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <main class="concert-one-regular">
-      <section id="home">
-        <h1 class="title">Welcome to My Home</h1>
-        <button onclick="location.href = '#about'">start</button>
-      </section>
-      <section id="about">
-        <h1 class="title">
-          <span class="material-symbols-outlined"> star_shine </span> About Me
-        </h1>
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/6670add926f2a64cd00fb0e7/6da6daee-4c14-4565-bfe9-2bc3e0d6fed1/usagi+button.png?format=750w"
-          alt="personal_photo"
-        />
-        <ul class="about">
-          <li>Name：Usagi</li>
-          <li>Job：DJ、Traveler、Foodie</li>
-          <li>hobby：eat, travel</li>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="shortcut icon" href="https://i.pinimg.com/736x/78/c2/9a/78c29a4e52d1f29f81c6dd50d556ec0f.jpg"
+    type="image/x-icon" />
+  <script src="main.js" type="module"></script>
+  <title>Git Practice - Self Introduction</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav_item">
+        <a href="#home">
+          <img
+            src="https://preview.redd.it/usagi-is-not-even-fat-v0-5211hb4qecxe1.png?width=640&crop=smart&auto=webp&s=b8603d8de0049ae5cfbd40ed5991f50b0f348f0f"
+            alt="Home" /></a>
+      </div>
+      <div class="nav_item">
+        <ul>
+          <li><a class="nunito-nav" href="#home">Home</a></li>
+          <li><a class="nunito-nav" href="#about">About</a></li>
+          <li><a class="nunito-nav" href="#contact">Contact</a></li>
         </ul>
-      </section>
-      <section id="story">
-        <h1 class="title">
-          <span class="material-symbols-outlined"> book </span> My Story
-        </h1>
-        <div class="col-gp">
-          <div class="col">test</div>
-          <div class="col">
-            <img
-              src="https://i.pinimg.com/originals/0b/53/0b/0b530bef44ff5d15b3b063484c03d19a.gif"
-              alt="usagi.gif"
-            />
-          </div>
-          <div class="col">test</div>
-          <div class="col">test</div>
-          <div class="col">test</div>
-          <div class="col">test</div>
+      </div>
+    </nav>
+  </header>
+  <main class="concert-one-regular">
+    <section id="home">
+      <h1 class="title">Welcome to My Home</h1>
+      <button onclick="location.href = '#about'">start</button>
+    </section>
+    <section id="about">
+      <h1 class="title">
+        <span class="material-symbols-outlined"> star_shine </span> About Me
+      </h1>
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/6670add926f2a64cd00fb0e7/6da6daee-4c14-4565-bfe9-2bc3e0d6fed1/usagi+button.png?format=750w"
+        alt="personal_photo" />
+      <ul class="about">
+        <li>Name：Usagi</li>
+        <li>Job：DJ、Traveler、Foodie</li>
+        <li>hobby：eat, travel</li>
+      </ul>
+    </section>
+    <section id="story">
+      <h1 class="title">
+        <span class="material-symbols-outlined"> book </span> My Story
+      </h1>
+      <div class="col-gp">
+        <div class="col">test</div>
+        <div class="col">
+          <img src="https://i.pinimg.com/originals/0b/53/0b/0b530bef44ff5d15b3b063484c03d19a.gif" alt="usagi.gif" />
         </div>
-      </section>
-      <section id="contact">
-        <h1 class="title">
-          <span class="material-symbols-outlined"> star_shine </span> Contact
-        </h1>
-        <p class="contact-info">Feel free to reach out to me!</p>
-        <div class="social">
-          <a
-            href="https://www.linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              width="80"
-              height="80"
-              src="https://img.icons8.com/stickers/100/linkedin.png"
-              alt="linkedin"
-            />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              width="80"
-              height="80"
-              src="https://img.icons8.com/stickers/100/instagram-new--v1.png"
-              alt="instagram-new--v1"
-            />
-          </a>
-          <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              width="80"
-              height="80"
-              src="https://img.icons8.com/stickers/100/facebook.png"
-              alt="facebook"
-            />
-          </a>
-        </div>
-      </section>
-    </main>
-  </body>
+        <div class="col">test</div>
+        <div class="col">test</div>
+        <div class="col">test</div>
+        <div class="col">test</div>
+      </div>
+    </section>
+    <section id="contact">
+      <h1 class="title">
+        <span class="material-symbols-outlined"> star_shine </span> Contact
+      </h1>
+      <p class="contact-info">Feel free to reach out to me!</p>
+      <div class="social">
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+          <img width="80" height="80" src="https://img.icons8.com/stickers/100/linkedin.png" alt="linkedin" />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <img width="80" height="80" src="https://img.icons8.com/stickers/100/instagram-new--v1.png"
+            alt="instagram-new--v1" />
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+          <img width="80" height="80" src="https://img.icons8.com/stickers/100/facebook.png" alt="facebook" />
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>

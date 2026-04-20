@@ -1,3 +1,5 @@
+import dayjs from 'dayjs' // 需要打包工具解析，讓瀏覽器找到js檔案位置
+
 // hamburger 選單切換功能
 document.addEventListener('DOMContentLoaded', function () {
   const hamburger = document.querySelector('.hamburger')
@@ -9,3 +11,5 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 })
+
+console.log(dayjs)

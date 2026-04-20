@@ -1,0 +1,34 @@
+{
+  "name": "my_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "hello": "echoHello",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint **/*.{js,mjs,cjs,vue}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duyoushan1-stack/du_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/duyoushan1-stack/du_project/issues"
+  },
+  "homepage": "https://github.com/duyoushan1-stack/du_project#readme",
+  "dependencies": {
+    "dayjs": "^1.11.20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "eslint-plugin-vue": "^10.8.0",
+    "globals": "^17.5.0",
+    "vite": "^8.0.9"
+  }
+}

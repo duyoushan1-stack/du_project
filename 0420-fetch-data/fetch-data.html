@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非同步函數</title>
+    <script src="fetchApi.js" type="module"></script>
+    <script src="lib.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+</head>
+<style>
+    * {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    section {
+        text-align: center;
+        padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    span {
+        color: blue;
+    }
+
+    input {
+        padding: 5px;
+    }
+
+    button {
+        padding: 2.5px 5px;
+        cursor: pointer;
+    }
+
+    .search-area {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    #station-list {
+        max-height: 70vh;
+        overflow-y: scroll;
+    }
+
+    #station {
+        padding: 10px;
+        text-align: justify
+    }
+
+    li+li {
+        border-top: 1px solid #c6c6c6;
+    }
+
+    #section-title {
+        margin-bottom: 1rem;
+        color: rgb(252, 90, 14);
+    }
+</style>
+
+<body>
+    <main>
+        <section>
+            <h1>執行結果：<span id="okResponse" style="color: green;"></span>
+            </h1>
+        </section>
+        <section>
+            <h2 id="section-title">YouBike 站點查詢</h2>
+            <div class="search-area">
+                <input id="searchInput" type="text" value="" placeholder="搜尋地址、站牌關鍵字">
+                <button id="searchBtn">查詢</button>
+            </div>
+            <ul id="station-list">
+                <li id="station"></li>
+            </ul>
+        </section>
+    </main>
+</body>
+
+</html>

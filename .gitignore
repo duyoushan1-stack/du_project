@@ -3,3 +3,5 @@
 # 環境設定
 .env
 .env.local
+# modules
+node_modules
