@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../lightbox.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="../lightbox.js"></script>
+    <title>標題</title>
+</head>
+<style>
+    * {
+        box-sizing: content-box;
+        line-height: 1.25;
+        overflow-x: hidden;
+    }
+
+    .box {
+        padding: 10px;
+        line-height: 0;
+    }
+
+    .border-box {
+        line-height: 0;
+        box-sizing: border-box;
+    }
+
+    /* section {
+        clear: both;
+    } */
+
+    .card {
+        border: 2px solid brown !important;
+        float: left;
+
+        img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+    }
+
+    .weather-card {
+        background: linear-gradient(360deg, #377DFF 0%, #377DFF 55%), radial-gradient(88.19% 272.93% at 0% 4.51%, #FFC927 0%, rgba(255, 201, 39, 0) 100%);
+        background-blend-mode: lighten;
+        height: 144px;
+        border-radius: 20px;
+        overflow-x: visible;
+
+        /* img */
+        [alt] {
+            margin-inline-start: -43px;
+            aspect-ratio: 1/1;
+            width: 144px;
+        }
+    }
+
+    /* 同一層的下一個(li 接 li) */
+    li+li {
+        padding: 8px;
+        border-top: 1px dashed #333;
+    }
+
+    /* h2 同一層之後的所有 li */
+    h2~li {
+        color: #FFC927;
+        text-align: left;
+    }
+
+    .out-side>.inner {
+        width: 100px;
+        height: 100px;
+        background-color: #d5d5d5;
+        border: 2px solid #a160eb;
+        /* font-size, color 會傳進子代 */
+        color: #377DFF;
+        align-content: center;
+        text-align: center;
+    }
+
+    .inner {
+        background-color: #a160eb;
+        color: #ffffff;
+    }
+</style>
+
+<body>
+    <section class="h-screen w-screen flex items-center justify-center">
+        <div class="border-box p-[4px] bg-black text-white text-center">
+            border: 4px
+            <div class="box bg-blue-500 textt-sm! text-center font-bold text-red-500">padding: 10px
+                <div
+                    class="bg-blue-300 w-[300px] h-[300px] text-white font-bold! mx-auto flex items-center justify-center">
+                    Content: 300px
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w-250 m-auto bg-gray-200 items-center justify-center">
+        <div class="w-[186px] card p-[10px] m-5 bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam
+                illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[186px] card p-[10px] m-5 bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[186px] card p-[10px] m-5 bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[186px] card p-[10px] m-5 bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+    </section>
+    <section class="w-[980px] text-center m-auto bg-gray-500 p-[10px]">
+        <p class="text-white">card: 980/4 - 20 - 20 - 4 px</p>
+        <div class="w-[201px] card p-[10px] m-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam
+                illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[201px] card p-[10px] m-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[201px] card p-[10px] m-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[201px] card p-[10px] m-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+    </section>
+    <!-- gap + border-box 寫法 -->
+    <section class="border-box w-250 text-center m-auto bg-gray-700 flex items-center justify-center p-5 gap-5">
+        <div class="w-[25%] card p-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam
+                illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[25%] card p-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[25%] card p-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="w-[25%] card p-[10px] bg-white">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+    </section>
+    <!-- grid 寫法 -->
+    <section
+        class="border-box lg:w-250 text-center m-auto bg-gray-700 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 p-5 gap-5">
+        <div class="card p-[10px] bg-white text-justify">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p class="mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam
+                illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="card p-[10px] bg-white text-justify">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p class="mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam
+                illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="card p-[10px] bg-white text-justify">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p class="mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam
+                illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+        <div class="card p-[10px] bg-white text-justify">
+            <img src="https://picsum.photos/250/150" alt="">
+            <p class="mt-2">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum enim maxime quibusdam
+                illum, facilis
+                possimus fuga? Molestiae, officia vel? Qui eum cumque harum reiciendis iste aliquid, error porro nihil
+                excepturi?</p>
+        </div>
+    </section>
+    <section class="m-auto p-20 flex flex-col items-center justify-center">
+        <!-- 天氣預報 -->
+        <a href="../images/sunny.svg" data-lightbox="image-1" data-title="My caption">展開雲朵圖</a>
+        <div class="weather-card relative w-100">
+            <img src="../images/sunny.svg" alt="太陽雲朵圖">
+            <div
+                class="flex flex-col justify-space-between container absolute text-white top-5 bottom-0 left-30 right-0">
+                <h2 class="text-xl font-bold mb-2">天氣預報 Weather Forcast</h2>
+                <p>中和 | 30度 | 晴</p>
+                <div class="btns mt-4 flex gap-2">
+                    <button
+                        class="border border-[#cece] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg cursor-pointer">查看</button>
+                    <button
+                        class="border border-[#cece] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg cursor-pointer">收藏</button>
+                </div>
+            </div>
+        </div>
+        <ul class="mt-[-30px] pt-10 shadow-lg w-100 p-4 rounded-lg bg-[#EFF4FE] text-center">
+            <h2 class="font-semibold text-xl mb-4">Notes</h2>
+            <li class="font-bold p-2">a: <span class="text-[#888]">老師今天推薦野飯甜</span></li>
+            <li>b: Today is SUNNY Day</li>
+            <li>b: 夏天是 summer, summer 是林有慧</li>
+            <li>b:</li>
+            <li>b:</li>
+        </ul>
+        <div class="out-side mt-10">
+            <div class="inner">
+                外層 INNER
+                <div class="inner" style="color: pink">內層 INNER</div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
