@@ -1,0 +1,77 @@
+* {
+  overflow-x: clip;
+}
+/* 文字樣式 */
+.sekuya-regular {
+  font-family: 'Sekuya', system-ui;
+  font-weight: 400;
+  font-style: italic;
+}
+
+a:visited {
+  color: crimson;
+}
+
+/* tab 變化 */
+a:focus {
+  color: aquamarine;
+}
+
+a:hover {
+  color: blue;
+}
+
+a:active {
+  color: orange;
+}
+
+.description {
+  text-align: left;
+  padding: 0 20px;
+  width: 70%;
+  margin: 0 auto;
+  list-style: disc inside;
+}
+
+.box {
+  color: tomato;
+}
+
+/* 同級-box 第一個 */
+.box:first-child {
+  color: rgb(226, 43, 52);
+}
+
+.box p:first-child {
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px 5px white;
+}
+
+/* 子級-每種標籤的第一個 */
+.box > :first-of-type {
+  color: blueviolet;
+}
+
+/* 子級-p,ul 第一個 */
+/* 如果沒有 >, 會層層選進去每個子代第一個: ul>li */
+.box > :first-child {
+  color: rgb(43, 86, 240);
+}
+
+.memo li {
+  border-bottom: 2px dotted white;
+  padding: 5px;
+}
+
+.memo li:last-child {
+  border-bottom: none;
+}
+
+/* n: 任意數、全部, 2n: 2倍數行 (以此類推 3n,4n...) */
+/* 2n+1: 2 倍數行加減 (以此類推 ?n + or -?) */
+/* n+2: 從第 2 行 (包含第 2 行) 開始算後面全部 (以此類推 n+3,n+4...) */
+/* -n+2: 從第 2 行 (包含第 2 行) 開始算前面全部 (以此類推 -n+3,-n+4...) */
+/* odd: 奇數, even: 偶數 */
+.memo li:nth-child(3n + 3) {
+  background-color: rgba(255, 255, 255, 0.25);
+}

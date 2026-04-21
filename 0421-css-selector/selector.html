@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="selector.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sekuya&display=swap"
+        rel="stylesheet">
+    <title>偽類選擇器</title>
+</head>
+
+<body>
+    <main class="w-screen bg-[#b9a4ad] py-6">
+        <section class="w-[768px] mx-auto text-center">
+            <h1 class="text-7xl text-purple-200 -mb-4 sekuya-regular">CSS SELECTOR</h1>
+        </section>
+        <section class="w-[768px] mx-auto p-10 bg-purple-200 text-center rounded-lg">
+            <h1 class="text-2xl font-bold mb-2">每個白色框都是 .box div</h1>
+            <ul class="description">
+                <li>同層 box 若不是第一個 .box:first-child 就沒有作用</li>
+                <li>預設 box 文字都是 <span class="text-[tomato]">番茄色</span></li>
+                <li>我是連結 <a href="#" target="_blank" class="!underline">點我變化</a></li>
+            </ul>
+            <div class="box m-5 p-4 border border-white">
+                <p>我是子代 p 第一個, .box p:first-child {文字黑色}</p>
+                <p>我是子代 p</p>
+                <p>我是子代 p</p>
+                <p>我是子代 p</p>
+                <p>我是子代 p</p>
+            </div>
+            <div class="box m-5 p-4 border border-white">
+                <p>我是子代 p 第一個</p>
+                <button>我是子代 button, .box :first-of-type{文字紫羅蘭色}</button>
+                <p>我是子代 p</p>
+                <p>我是子代 p</p>
+            </div>
+            <div class="box m-5 p-4 border border-white flex flex-col gap-4">
+                <ul>
+                    <li>我是子代第 1 個 ul 內的第 1 個 li, 我都是 .box> :first-child{文字藍色}</li>
+                    <li>我是子代第 1 個 ul 內的第 2 個 li</li>
+                    <li>我是子代第 1 個 ul 內的第 3 個 li</li>
+                    <ul>
+                        <li>我是玄孫: ul>ul>li</li>
+                    </ul>
+                </ul>
+                <h3>我是子代 h3</h3>
+                <p>我是子代 p</p>
+                <ul>
+                    <li>我是子代第 2 個 ul 內的第 1 個 li</li>
+                    <li>我是子代第 2 個 ul 內的第 2 個 li</li>
+                    <ul>
+                        <li>我是玄孫: ul>ul>li</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="memo m-5 p-4 border border-white">
+                <h2 class="text-xl font-semibold mb-4 text-[#aaee]">MEMO List</h2>
+                <ul>
+                    <li>li1</li>
+                    <li>li2</li>
+                    <li>li3</li>
+                    <li>li4</li>
+                    <li>li5</li>
+                    <li>li6</li>
+                    <li>li7</li>
+                    <li>li8</li>
+                    <li>li9</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
