@@ -1,0 +1,117 @@
+* {
+  overflow-x: clip;
+}
+h1 {
+  text-decoration: green wavy underline;
+}
+html {
+  background-image: url('https://www.shutterstock.com/image-vector/cartoon-grass-seamless-pattern-600nw-613849544.jpg');
+  background-position: center center;
+  background-attachment: fixed;
+  background-color: rgba(255, 255, 255, 0.2);
+  background-blend-mode: luminosity;
+}
+
+.line-center p {
+  display: inline-block;
+  line-height: 80px;
+  height: 0;
+}
+.indent {
+  text-indent: 2rem;
+}
+.dir-rtl {
+  direction: rtl;
+}
+/* float 練習 */
+.float-section {
+  background-color: #bcd481;
+  width: 600px;
+  padding: 20px;
+  margin: auto;
+}
+.float-section img {
+  width: 200px;
+  float: right;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  margin: 20px 0 20px 20px;
+}
+.float-section img[alt*='left'] {
+  float: left;
+  /* 水平翻轉 */
+  transform: scaleX(-1);
+  margin: 0 20px 20px 0px;
+}
+/* 卡片左右對稱 */
+.cards-section {
+  width: 1000px;
+  padding: 20px;
+  margin: auto;
+  img {
+    float: left;
+    width: 400px;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    margin: 0 40px 0 0;
+  }
+}
+.card {
+  /* align-content: center; */
+  background-color: #f7f4e5;
+}
+.card:nth-child(even) {
+  direction: rtl;
+  background-color: #bcd481;
+  img {
+    float: right;
+    margin: 0 0 0 40px;
+  }
+}
+.clear {
+  clear: both;
+}
+/* 畫廊 */
+.photo-group img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  float: right;
+}
+.photo-group:nth-child(even) img {
+  float: left;
+}
+/* 相框 */
+.photo-section {
+  position: relative;
+  padding: 20px;
+  background-image: url('https://p1.itc.cn/images01/20210630/9ce882ba29524a6e97790e1719e16944.png');
+  background-size: contain;
+  border-radius: 4px;
+  box-shadow: 10px 10px 10px #223e0164;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  img[alt='sweet'] {
+    position: absolute;
+    content: '';
+    top: 100px;
+    left: 50px;
+    width: 150px;
+    object-fit: contain;
+  }
+}
+/* 漸層背景 */
+.linear-section {
+  margin-top: -10vh;
+  padding-top: 5vh;
+  /* background: linear-gradient(to right, #f7e04f, #9dd907); */
+  background: radial-gradient(circle, #f7e04f, hsla(0, 0%, 100%, 0));
+  height: 200px;
+  align-content: center;
+  text-align: center;
+  border-style: inset dotted;
+  border-width: 5px 5px;
+  border-color: #bcd481;
+}
