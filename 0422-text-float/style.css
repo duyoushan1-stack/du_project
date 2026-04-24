@@ -92,7 +92,7 @@ html {
   float: right;
 }
 
-.photo-group:nth-child(even) {
+.photo-group:nth-child(odd) {
   img {
     float: left;
   }
