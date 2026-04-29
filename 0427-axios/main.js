@@ -81,22 +81,22 @@ axios.get(api).then((resp) => {
 //       })
 //   })
 
-// const prev = document.querySelector('#prev')
-// const next = document.querySelector('#next')
-// const dateNow = document.querySelector('#dateNow')
+const prev = document.querySelector('#prev')
+const next = document.querySelector('#next')
+const dateNow = document.querySelector('#dateNow')
 
-// let thisMonth = dayjs() // now
-// dateNow.value = thisMonth.format('YYYY/M')
+let thisMonth = dayjs() // now
+dateNow.value = thisMonth.format('YYYY/M')
 
-// prev.addEventListener('click', () => {
-//   thisMonth = thisMonth.subtract(1, 'month')
-//   dateNow.value = thisMonth.format('YYYY/M')
-// })
+prev.addEventListener('click', () => {
+  thisMonth = thisMonth.subtract(1, 'month')
+  dateNow.value = thisMonth.format('YYYY/M')
+})
 
-// next.addEventListener('click', () => {
-//   thisMonth = thisMonth.add(1, 'month')
-//   dateNow.value = thisMonth.format('YYYY/M')
-// })
+next.addEventListener('click', () => {
+  thisMonth = thisMonth.add(1, 'month')
+  dateNow.value = thisMonth.format('YYYY/M')
+})
 
 // scope = 去哪裡找東西。var 找不到就找外層有沒有定義
 
