@@ -55,6 +55,10 @@ ul {
   &:first-child {
     box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.25);
   }
+  &:hover {
+    transform: scale(1.05);
+    transition: all ease-in-out 0.35s;
+  }
 }
 
 .cards-group button {
@@ -115,14 +119,20 @@ ul {
     color: #fff;
   }
 }
+
 /* position fixed practice */
 .fixed-box {
   width: 50px;
   height: 50px;
   background-color: floralwhite;
 }
-/* position absolute practice */
 
+/* position absolute practice */
+.absolute-bg {
+  background-image: url(https://images.unsplash.com/photo-1737276681707-3d73c973b4dc?q=80&w=1178&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-attachment: fixed;
+  background-size: contain;
+}
 .box {
   border: 4px solid saddlebrown;
 }
