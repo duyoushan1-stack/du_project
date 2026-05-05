@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+section {
+  text-align: center;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+input,
+button {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.todo-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task-form,
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.todo-item {
+  width: 300px;
+  border-bottom: 1px solid #000;
+  background-color: rgb(200, 245, 185);
+}

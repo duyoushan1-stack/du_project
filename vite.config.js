@@ -5,13 +5,13 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
-  root: '0427-axios',
+  root: '0504-this',
   server: {
     open: true,
   },
   build: {
     rollupOptions: {
-      input: resolve(__dirname, '0427-axios/index.html'),
+      input: resolve(__dirname, '0504-this/index.html'),
     },
   },
 })
