@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+
+<style>
+    body {
+        display: grid;
+        grid-template-areas:
+            "a a a"
+            "b c d"
+            "b c ."
+            "b e e";
+        height: 100vh;
+        grid-template-columns: 10% auto 10%;
+        grid-template-rows: 15% auto auto 20%;
+        background-color: #6D9886;
+    }
+
+    .nav-bar {
+        grid-area: a;
+        /* height: 80px; */
+        background-color: #EEECDA;
+
+        nav,
+        ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 16px;
+        }
+
+        .logo {
+            width: 70px;
+            border-radius: 100px;
+            object-fit: contain;
+        }
+    }
+
+    .side-bar {
+        grid-area: b;
+        height: auto;
+        background-color: #D9CAB3;
+    }
+
+    .posts {
+        grid-area: c;
+        background-color: #6D9886;
+    }
+
+    .ad {
+        grid-area: d;
+        background-color: #FFBA92;
+    }
+
+    footer {
+        grid-area: e;
+        background-color: #212121;
+    }
+</style>
+
+<body>
+    <header class="nav-bar">
+        <nav>
+            <img class="logo" src="https://i.pinimg.com/originals/87/5d/79/875d796d2f05b7ff25130ed4b8425fde.jpg" alt="">
+            <ul>
+                <li>HOME</li>
+                <li>早安城之美</li>
+                <li>天氣快報</li>
+                <li>股市行情</li>
+            </ul>
+        </nav>
+    </header>
+    <aside class="side-bar"></aside>
+    <div class="posts"></div>
+    <div class="ad"></div>
+    <footer></footer>
+</body>
+
+</html>
