@@ -1,0 +1,205 @@
+* {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  background-image: url('../images/floral.png');
+  background-color: #ead4d4;
+  background-size: 50%;
+  background-blend-mode: soft-light;
+  background-attachment: fixed;
+}
+
+/* header */
+header {
+  position: fixed;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #b87e7c;
+  .logo {
+    width: 40px;
+  }
+  .nav-links {
+    display: flex;
+    height: 100%;
+    gap: 20px;
+    li {
+      position: relative;
+      padding: 5px 12px;
+      line-height: 30px;
+      color: #f0eae0;
+    }
+  }
+}
+.hotel:hover .sub-links,
+.ticket:hover .sub-links,
+.tourism:hover .sub-links {
+  visibility: visible;
+}
+.sub-links {
+  position: absolute;
+  content: '';
+  visibility: hidden;
+  width: 120px;
+  top: 60px;
+  background-color: #b87e7c;
+  border-radius: 0 10px 10px 10px;
+  &:hover {
+    visibility: visible;
+  }
+  &::before {
+    position: absolute;
+    content: '▲';
+    color: #b87e7c;
+    top: -20px;
+    left: -3.5px;
+    font-size: 20px;
+  }
+}
+.pc-nav {
+  visibility: hidden;
+}
+
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  align-items: stretch;
+  gap: 20px;
+}
+
+h1 {
+  padding-top: 84px;
+  justify-self: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #f0eae0;
+  text-shadow: 0 0 10px #b87e7c;
+}
+
+.cards {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #c6b4d8;
+  border-radius: 12px;
+  align-content: center;
+  text-align: center;
+  color: #f0eae0;
+  font-weight: 700;
+}
+.box:nth-child(2n) {
+  background-color: #f5c0bf;
+}
+
+/* 商品列表 */
+
+.gallery {
+  padding: 16px;
+}
+
+.product-container,
+.ad-container {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  .product,
+  .ad {
+    background: #f0eae0 url('../images/sober.png') no-repeat right bottom /
+      150px;
+    border-radius: 12px;
+    padding: 10px;
+    align-content: end;
+    color: #c6b4d8;
+    transition: all 0.5s;
+    cursor: pointer;
+    &:hover {
+      background-size: 200px;
+    }
+  }
+  .product:nth-child(1) h3 {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 5px 10px;
+    color: #f0eae0;
+    background-color: #c6b4d8;
+    width: fit-content;
+    border-radius: 10px;
+  }
+  .product:nth-child(n + 2) {
+    display: none;
+  }
+}
+.product-container {
+  height: 200px;
+  grid-template-columns: repeat(1, 1fr);
+}
+.ad-container {
+  height: 1260px;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+/* 平板: 768 ~ 1023 */
+@media (min-width: 768px) {
+  .pc-nav {
+    order: 1;
+    visibility: visible;
+  }
+  .hamburger-nav {
+    visibility: hidden;
+  }
+  body {
+    background-size: 20%;
+  }
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    height: 85vh;
+  }
+  .box:nth-child(1) {
+    grid-row: 1 / span 2;
+  }
+  .box {
+    aspect-ratio: auto;
+    height: auto;
+  }
+  .product-container {
+    grid-template-columns: repeat(2, 1fr);
+    /* 第二張以前要顯示 */
+    .product:nth-child(-n + 2) {
+      display: block;
+    }
+  }
+  .ad-container {
+    height: 250px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* 電腦: 1024 ~ 1199 */
+@media (min-width: 1024px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .box:nth-child(1) {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 4;
+  }
+  .product-container {
+    grid-template-columns: repeat(3, 1fr);
+    .product:nth-child(n) {
+      display: block;
+    }
+  }
+  .ad-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

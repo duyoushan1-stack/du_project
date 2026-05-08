@@ -42,8 +42,9 @@ function loadTask() {
   return tasks
 }
 
-function saveTask(tasks) {
-  loadTask()
+function saveTask(text) {
+  const tasks = loadTask()
+  const taskObj = {}
   localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 

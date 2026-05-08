@@ -25,7 +25,7 @@ function saveTask(text) {
     id: crypto.randomUUID(),
     task: text,
   }
-  items.unshift(itemObj)
+  items.push(itemObj)
   updateTask(items)
   return itemObj
 }
