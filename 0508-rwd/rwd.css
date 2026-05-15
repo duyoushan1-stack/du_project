@@ -4,6 +4,7 @@
 }
 
 body {
+  interpolate-size: allow-keywords;
   background-image: url('../images/floral.png');
   background-color: #ead4d4;
   background-size: 50%;
@@ -11,10 +12,21 @@ body {
   background-attachment: fixed;
 }
 
+input {
+  visibility: hidden;
+  display: none;
+}
+
+label {
+  cursor: pointer;
+  color: #f0eae0;
+}
+
 /* header */
 header {
   position: fixed;
   width: 100%;
+  height: fit-content;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
@@ -25,16 +37,19 @@ header {
   }
   .nav-links {
     display: flex;
-    height: 100%;
-    gap: 20px;
     li {
       position: relative;
-      padding: 5px 12px;
-      line-height: 30px;
       color: #f0eae0;
+    }
+    .nav-link-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4px;
     }
   }
 }
+
 .hotel:hover .sub-links,
 .ticket:hover .sub-links,
 .tourism:hover .sub-links {
@@ -45,23 +60,32 @@ header {
   content: '';
   visibility: hidden;
   width: 120px;
-  top: 60px;
+  top: 100%;
   background-color: #b87e7c;
   border-radius: 0 10px 10px 10px;
+  li:hover {
+    background-color: #b86b69;
+    border-radius: 10px;
+  }
   &:hover {
     visibility: visible;
   }
-  &::before {
+  /* &::before {
     position: absolute;
     content: '▲';
     color: #b87e7c;
     top: -20px;
     left: -3.5px;
     font-size: 20px;
+  } */
+  &::after {
+    position: absolute;
+    content: '';
+    inset: 0;
+    top: -20px;
+    background-color: transparent;
+    z-index: -1;
   }
-}
-.pc-nav {
-  visibility: hidden;
 }
 
 section {
@@ -148,17 +172,61 @@ h1 {
   grid-template-columns: repeat(1, 1fr);
 }
 
+/* 手機：767 以下 */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    width: 100%;
+    gap: 0;
+    transition: all 0.5s;
+    height: fit-content;
+    background-color: #b87e7c;
+    border-radius: 0 0 12px 12px;
+    > li {
+      padding: 16px;
+      border-bottom: 1px dotted #f0eae0ac;
+    }
+  }
+  #sidebar:checked ~ .nav-links {
+    left: 0;
+  }
+  .nav-links li:hover .sub-links {
+    max-height: fit-content;
+  }
+  .sub-links {
+    position: static;
+    width: 100%;
+    inset: auto;
+    background-color: #b1706e;
+    border-radius: 0;
+    max-height: 0;
+    overflow: hidden;
+    list-style: none;
+    transition: max-height 0.3s;
+    li {
+      padding: 10px 20px;
+      border-bottom: 1px dotted #f0eae0ac;
+    }
+  }
+}
+
 /* 平板: 768 ~ 1023 */
 @media (min-width: 768px) {
-  .pc-nav {
-    order: 1;
-    visibility: visible;
-  }
-  .hamburger-nav {
-    visibility: hidden;
-  }
   body {
     background-size: 20%;
+  }
+  .nav-links {
+    flex-direction: row !important;
+    gap: 20px;
+    li {
+      padding: 5px 12px;
+    }
+  }
+  #sidebar-icon {
+    visibility: hidden;
   }
   .cards {
     grid-template-columns: repeat(3, 1fr);

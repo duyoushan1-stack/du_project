@@ -11,6 +11,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1340c168c8.js" crossorigin="anonymous"></script>
     <title>RWD 練習</title>
 </head>
 
@@ -19,104 +20,65 @@
         <a href="#">
             <img class="logo" src="../images/usagi-stand.png" alt="">
         </a>
-        <div class="pc-nav">
-            <ul class="nav-links">
-                <li class="hotel">
-                    <a href="#">找飯店</a>
-                    <ul class="sub-links">
-                        <li>
-                            <a href="#">喜來登大飯店</a>
-                        </li>
-                        <li>
-                            <a href="#">尊爵大飯店</a>
-                        </li>
-                        <li>
-                            <a href="#">親愛的爸媽家</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="ticket">
-                    <a href="#">找機票</a>
-                    <ul class="sub-links">
-                        <li>
-                            <a href="#">日本直飛</a>
-                        </li>
-                        <li>
-                            <a href="#">澳大利亞直飛</a>
-                        </li>
-                        <li>
-                            <a href="#">瑞士直飛</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="tourism">
-                    <a href="#">找景點</a>
-                    <ul class="sub-links">
-                        <li>
-                            <a href="#">鵝鑾鼻</a>
-                        </li>
-                        <li>
-                            <a href="#">安鼠之亂</a>
-                        </li>
-                        <li>
-                            <a href="#">中壢車站</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">找美食</a>
-                </li>
-            </ul>
-        </div>
-        <div class="hamburger-nav">
-            <ul class="nav-links">
-                <li class="hotel">
-                    <a href="#">找飯店</a>
-                    <ul class="sub-links">
-                        <li>
-                            <a href="#">喜來登大飯店</a>
-                        </li>
-                        <li>
-                            <a href="#">尊爵大飯店</a>
-                        </li>
-                        <li>
-                            <a href="#">親愛的爸媽家</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="ticket">
-                    <a href="#">找機票</a>
-                    <ul class="sub-links">
-                        <li>
-                            <a href="#">日本直飛</a>
-                        </li>
-                        <li>
-                            <a href="#">澳大利亞直飛</a>
-                        </li>
-                        <li>
-                            <a href="#">瑞士直飛</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="tourism">
-                    <a href="#">找景點</a>
-                    <ul class="sub-links">
-                        <li>
-                            <a href="#">鵝鑾鼻</a>
-                        </li>
-                        <li>
-                            <a href="#">安鼠之亂</a>
-                        </li>
-                        <li>
-                            <a href="#">中壢車站</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">找美食</a>
-                </li>
-            </ul>
-        </div>
+        <input type="checkbox" id="sidebar">
+        <label id="sidebar-icon" for="sidebar">
+            <i class="fa-solid fa-bars" style="color: rgb(255, 255, 255);"></i>
+        </label>
+        <ul class="nav-links">
+            <li class="hotel">
+                <input type="checkbox" id="hotel">
+                <label for="hotel" class="nav-link-label">
+                    找飯店<i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+                </label>
+                <ul class="sub-links">
+                    <li>
+                        <a href="#">喜來登大飯店</a>
+                    </li>
+                    <li>
+                        <a href="#">尊爵大飯店</a>
+                    </li>
+                    <li>
+                        <a href="#">親愛的爸媽家</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="ticket">
+                <input type="checkbox" id="ticket">
+                <label for="ticket" class="nav-link-label">找機票<i class="fa-solid fa-angle-down"
+                        style="color: rgb(255, 255, 255);"></i>
+                </label>
+                <ul class="sub-links">
+                    <li>
+                        <a href="#">日本直飛</a>
+                    </li>
+                    <li>
+                        <a href="#">澳大利亞直飛</a>
+                    </li>
+                    <li>
+                        <a href="#">瑞士直飛</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="tourism">
+                <input type="checkbox" id="tourism">
+                <label for="tourism" class="nav-link-label">找景點<i class="fa-solid fa-angle-down"
+                        style="color: rgb(255, 255, 255);"></i></label>
+                <ul class="sub-links">
+                    <li>
+                        <a href="#">鵝鑾鼻</a>
+                    </li>
+                    <li>
+                        <a href="#">安鼠之亂</a>
+                    </li>
+                    <li>
+                        <a href="#">中壢車站</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">找美食</a>
+            </li>
+        </ul>
     </header>
     <h1>RWD Party</h1>
     <section class="cards">
