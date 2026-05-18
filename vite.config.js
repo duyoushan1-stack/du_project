@@ -5,13 +5,14 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
-  root: '0504-this',
+  root: 'js-practice/0504-this',
   server: {
     open: true,
   },
   build: {
     rollupOptions: {
-      input: resolve(__dirname, '0504-this/index.html'),
+      input: resolve(__dirname, 'js-practice/0504-this/index.html'),
     },
   },
 })
+

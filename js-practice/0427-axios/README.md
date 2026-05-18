@@ -13,7 +13,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: resolve(__dirname, '0427-axios/index.html'),
+      input: resolve(__dirname, 'js-practice/0427-axios/index.html'),
     },
   },
 })

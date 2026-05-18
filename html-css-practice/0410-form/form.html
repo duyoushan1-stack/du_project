@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../reset.css" />
+  <link rel="stylesheet" href="form.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
+  <title>表單練習</title>
+</head>
+
+<body>
+  <main class="inter-font">
+    <section class="header-form">
+      <form action="https://www.google.com/search" method="get">
+        <input type="text" name="q" placeholder="search..." />
+        <button>Search</button>
+      </form>
+      <form action="https://5xcampus.com/session/sign_in" method="post">
+        <input type="number" name="num" max="8" placeholder="你的銀行密碼" required />
+        <!-- onclick="showAlert()" -->
+        <button onclick="showAlert()">提交</button>
+        <button class="resetBtn" type="reset">清除</button>
+      </form>
+    </section>
+    <section>
+      <form action="#" method="get">
+        <label for="input">不能填寫</label>
+        <input type="email" name="" id="" readonly />
+        <label for="input">電話</label>
+        <input type="tel" name="phone-number" />
+        <!-- 篩選顏色 -->
+        <input type="color" name="" id="" />
+        <!-- 時間 -->
+        <input type="date" name="date" min="2026-04-10" />
+        <input type="datetime-local" name="date" min="" />
+        <!-- 提交表單 -->
+        <input type="button" value="這是 input 的 Button" />
+        <input type="submit" value="等於 submit btn" />
+        <input type="image" src="https://www.freeiconspng.com/thumbs/submit-button-png/submit-button-png-11.png"
+          style="width: 100px; border: none" alt="提交表單" />
+        <!-- 其他 -->
+        <input type="search" name="search" placeholder="search..." />
+        <input type="range" min="1" max="9" />
+        <!-- 上傳檔案 -->
+        <label for="myfile">Select a file:</label>
+        <input type="file" id="myfile" name="myfile" />
+      </form>
+      <form action="#" class="select-form">
+        <h3>午餐吃啥</h3>
+        <input type="radio" name="my-lunch" id="fried-rice" checked />
+        <label for="fried-rice">揚州炒飯</label>
+        <input type="radio" name="my-lunch" id="healthy-bento" />
+        <label for="healthy-bento">健康便當</label>
+        <input type="radio" name="my-lunch" id="subway" />
+        <label for="subway">subway</label>
+      </form>
+      <form action="#" class="select-form">
+        <fieldset>
+          <legend>健康清單</legend>
+          <input type="checkbox" name="health-list" id="good-manner" />
+          <label for="good-manner">早睡早起</label>
+          <input type="checkbox" name="health-list" id="Mediterranean-diet" />
+          <label for="Mediterranean-diet">地中海飲食</label>
+          <input type="checkbox" name="health-list" id="good-mood" />
+          <label for="good-mood">直接發瘋絕不內耗</label>
+        </fieldset>
+        <div>
+          <label for="qa">
+            <textarea name="" id="qa" rows="5" cols="20">
+say something
+              </textarea>
+          </label>
+        </div>
+      </form>
+    </section>
+    <section class="enroll">
+      <div class="container">
+        <h3>填寫註冊資料</h3>
+        <p>我們將確認你是否已擁有帳戶</p>
+      </div>
+      <form class="enroll-form" action="#" method="post">
+        <div class="wrap">
+          <div class="sub-title">
+            <label for="user-id">身分證</label>
+            <a href="#" class="more-info">?</a>
+          </div>
+          <input type="text" placeholder="輸入身分證、居留證或他國護照號碼" id="user-id" required />
+        </div>
+        <div class="wrap">
+          <div class="sub-title">
+            <label for="user-email">Email</label>
+          </div>
+          <input type="email" placeholder="輸入Email" id="user-email" required />
+        </div>
+        <div class="wrap">
+          <div class="sub-title">
+            <label for="user-phone">手機號碼</label>
+            <a href="#" class="more-info">?</a>
+          </div>
+          <div class="sub-wrap">
+            <select name="country">
+              <option value="TW">TW +886</option>
+              <option value="TW">TW +885</option>
+              <option value="TW">TW +884</option>
+            </select>
+            <input type="tel" pattern="^09\{8}$" placeholder="輸入電話" id="user-phone" required />
+          </div>
+        </div>
+        <div class="container">
+          <button type="submit" disabled>驗證 Email</button>
+          <a href="#"><small>回上一頁</small></a>
+          <select name="country">
+            <optgroup label="美洲">
+              <option value="us">美國</option>
+              <option value="ca">加拿大</option>
+              <option value="bra">巴西</option>
+            </optgroup>
+            <optgroup label="歐洲">
+              <option value="it">義大利</option>
+              <option value="ch">瑞士</option>
+              <option value="cz">捷克</option>
+            </optgroup>
+          </select>
+          <caption>
+            這是進度條 progress
+          </caption>
+          <progress id="file" max="100" value="70"></progress>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="form.js"></script>
+</body>
+
+</html>

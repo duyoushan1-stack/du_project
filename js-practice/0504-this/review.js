@@ -30,7 +30,7 @@ taskForm.addEventListener('submit', (e) => {
   }
 })
 
-// storage：載入->儲存
+// read
 
 function loadTask() {
   let tasks = localStorage.getItem('tasks') // 1. 建立一個名為 tasks 的物件陣列
@@ -42,13 +42,17 @@ function loadTask() {
   return tasks
 }
 
+//　storage
+
 function saveTask(text) {
   const tasks = loadTask()
-  const taskObj = {}
-  localStorage.setItem('tasks', JSON.stringify(tasks))
+  const taskObj = {
+    id: crypto.randomUUID,
+    name: text,
+  }
+  localStorage.setItem('tasks', JSON.stringify(taskObj))
+  return taskObj
 }
-
-// read
 
 // update
 

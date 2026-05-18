@@ -73,7 +73,7 @@ function init() {
     const target = e.target // 解構：const {target} = e
     if (target.nodeName == 'BUTTON') {
       // 找到匹配 id 的任務索引
-      const taskIndex = tasks.findIndex((task) => task.id === target.dataset.id)
+      const taskIndex = tasks.findIndex((el) => el.id === target.dataset.id)
 
       if (taskIndex !== -1) {
         tasks.splice(taskIndex, 1)
