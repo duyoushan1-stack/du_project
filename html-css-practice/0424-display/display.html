@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_upward" />
+    <title>FLEX</title>
+</head>
+<style>
+    * {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        position: relative;
+        background-image: url('https://images.unsplash.com/photo-1552819094-45f258226b11?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-color: rgba(50, 2, 126, 0.95);
+        background-blend-mode: multiply;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    header {
+        position: fixed;
+        width: 100%;
+        transition: all .3s;
+        border-bottom: 1px solid whitesmoke;
+    }
+
+    .scrollUp {
+        transform: translateY(-100%);
+    }
+
+    .cards-area {
+        flex-wrap: wrap;
+    }
+
+    .cards-area2 {
+        height: 200px;
+        justify-content: center;
+
+        .card {
+            width: 100%;
+        }
+
+        .card:nth-child(even) {
+            align-self: end;
+        }
+    }
+
+    .basis-gp div {
+        /* 寬度都一樣。flex-grow: 1 不一定等寬 */
+        flex-basis: 0;
+        flex-grow: 1;
+    }
+
+    #scrollTop {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+    }
+</style>
+
+<body>
+    <header class="bg-[#090040] flex justify-between items-center py-3 px-5">
+        <p class="text-white">window.pageYOffset： <span id="show1"></span></p>
+        <div class="nav-links">
+            <a href="#" id="nav-link"
+                class="bg-[#B13BFF] font-semibold hover:bg-violet-600 text-white text-center px-3 py-2">首頁</a>
+            <a href="#" id="nav-link"
+                class="bg-[#B13BFF] font-semibold hover:bg-violet-600 text-white text-center px-3 py-2">關於</a>
+            <a href="#" id="nav-link"
+                class="bg-[#B13BFF] font-semibold hover:bg-violet-600 text-white text-center px-3 py-2">服務</a>
+            <a href="#" id="nav-link"
+                class="bg-[#B13BFF] font-semibold hover:bg-violet-600 text-white text-center px-3 py-2">聯絡</a>
+        </div>
+    </header>
+    <section class="h-screen content-center text-center text-white mx-auto">
+        <button id="scrollTop"
+            class="h-10 w-10 rounded-full bg-[#B13BFF] flex justify-center items-center cursor-pointer"><span
+                class="material-symbols-outlined">arrow_upward</span></button>
+        <h2 class="text-4xl mb-6 font-bold text-[#FFCC00]">請上下滾動查看網頁內容</h2>
+        <ul>
+            <li class="text-xl font-semibold mb-2">本篇介紹 flex</li>
+            <li>預設方向-row,主軸:➡️,次軸:⬇️</li>
+            <li>改方向-column,主軸:⬇️,次軸➡️</li>
+            <li>主軸對齊：justify-content | 次軸對齊：align-items</li>
+        </ul>
+        <div class="cards flex justify-center items-center gap-4 text-white mt-5">
+            <div class="card w-50 h-50 border content-center p-4">我又是卡片了，內容請隨意亂寫....</div>
+            <div class="card w-50 h-50 border content-center p-4">我又是卡片了，內容請隨意亂寫....</div>
+            <div class="card w-50 h-50 border content-center p-4">我又是卡片了，內容請隨意亂寫....</div>
+        </div>
+    </section>
+    <section class="h-screen w-[90%] content-center text-center mx-auto text-white">
+        <h2 class="text-2xl font-bold">每一行 flex div 有設定外層包裝</h2>
+        <p>並且使用 flex-grow: 1</p>
+        <div class="cards-area flex gap-5 text-white mt-5">
+            <div class="flex-row w-full">
+                <div class="card bg-white/20 border h-25 content-center">你好 flex</div>
+            </div>
+            <div class="flex-row w-full gap-5 flex h-25">
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+            </div>
+            <div class="flex-row w-full gap-5 flex h-25">
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+            </div>
+            <div class="flex-row w-full gap-5 flex h-25">
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+                <div class="card bg-white/20 border grow content-center">你好 flex</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="h-screen w-[1000px] content-center text-center mx-auto">
+        <h2 class="text-2xl text-white font-bold">每一行 flex div 沒有設定外層包裝</h2>
+        <div class="cards-area flex gap-5 text-white mt-5">
+            <div class="card bg-white/20 w-full border h-25 content-center">flex div 1</div>
+            <div class="card bg-white/20 w-[49%] border h-25 content-center">flex div 2</div>
+            <div class="card bg-white/20 w-[49%] border h-25 content-center">flex div 3</div>
+            <div class="card bg-white/20 w-[32%] h-25 border content-center">flex div 4</div>
+            <div class="card bg-white/20 w-[32%] h-25 border content-center">flex div 5</div>
+            <div class="card bg-white/20 w-[32%] h-25 border content-center">flex div 6</div>
+            <div class="card bg-white/20 w-[23.5%] h-25 border content-center">flex div 7</div>
+            <div class="card bg-white/20 w-[23.5%] h-25 border content-center">flex div 8</div>
+            <div class="card bg-white/20 w-[23.5%] h-25 border content-center">flex div 9</div>
+            <div class="card bg-white/20 w-[23.5%] h-25 border content-center">flex div 10</div>
+        </div>
+    </section>
+    <section class="h-screen w-[80%] content-center text-center text-white  mx-auto">
+        <h2 class="text-2xl font-bold">我看是綠豆糕</h2>
+        <p>flex-grow = 剩餘空間 / grow 總數 * 子元素 grow 數字</p>
+        <p>flex-shrink = 超出空間 / shrink 總數 * 子元素 grow 數字</p>
+        <div class="cards-area2 flex text-white mt-5 bg-white/30">
+            <div class="card bg-white/20 border h-25 p-4 content-center">flex div 1</div>
+            <div class="card bg-white/20 border h-25 p-4 content-center">
+                <p> flex div 2</p>
+                <p>align-self: end</p>
+            </div>
+            <div class="card bg-white/20 border h-25 p-4 content-center">flex div 3</div>
+            <div class="card bg-white/20 border h-25 p-4 content-center">
+                <p> flex div 2</p>
+                <p>align-self: end</p>
+            </div>
+        </div>
+        <div class="grow-gp text-left flex">
+            <!-- grow = flex-grow: 1 -->
+            <div class="flex-2 bg-violet-200 h-25 content-center"><span class="text-xl">1</span> Grow</div>
+            <div class="flex-1 bg-violet-300 h-25 content-center"><span class="text-xl">2</span> Grow</div>
+            <div class="flex-1 bg-violet-400 h-25 content-center"><span class="text-xl">3</span> Grow</div>
+        </div>
+        <div class="shrink-gp text-left flex">
+            <div class="bg-violet-200 h-25 w-200 content-center order-3 shrink-2"><span class="text-xl">1</span>
+                <span>Shrink</span>
+                <p>我有 shrink-2</p>
+            </div>
+            <div class="bg-violet-300 h-25 w-200 content-center order-2"><span class="text-xl">2</span> Shrink</div>
+            <div class="bg-violet-400 h-25 w-200 content-center order-1"><span class="text-xl">3</span> Shrink</div>
+        </div>
+        <div class="basis-gp text-left flex">
+            <div class="bg-violet-200 h-25 content-center"><span class="text-xl">1</span> Basis</div>
+            <div class="bg-violet-300 h-25 content-center"><span class="text-xl">2</span> Basis</div>
+            <div class="bg-violet-400 h-25 content-center"><span class="text-xl">3</span> Basis</div>
+        </div>
+    </section>
+</body>
+<script>
+    const header = document.querySelector("header")
+    const scrollTop = document.querySelector("#scrollTop")
+    const show1 = document.querySelector("#show1")
+    let lastScrollY = window.pageYOffset
+
+    window.addEventListener("scroll", () => {
+        let currentScrollY = window.pageYOffset
+        show1.innerHTML = currentScrollY
+        currentScrollY > lastScrollY ? header.classList.add("scrollUp") : header.classList.remove("scrollUp")
+        lastScrollY = currentScrollY; // 每次上面程式碼執行完畢就刷新上次紀錄的 Y 值
+    })
+    scrollTop.addEventListener("click", () => {
+        window.scrollTo(0, 0)
+    })
+</script>
+
+</html>

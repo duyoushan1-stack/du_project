@@ -1,0 +1,132 @@
+body {
+  background-image: url('https://images.unsplash.com/photo-1706820642356-2ae39743b9c4?q=80&w=1228&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+main {
+  margin: 20px;
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  border: 1px solid floralwhite;
+}
+.box-1 {
+  transform: rotate(180deg);
+}
+.box-2 {
+  transform: rotate(45deg);
+}
+.box-3 {
+  transform: rotate(90deg);
+}
+.box-4 {
+  transform: scale(2, 0.5);
+}
+.box-5 {
+  transform: skewX(30deg);
+}
+.box-6 {
+  transform: scale3d(2.5, 1.2, 0.3);
+}
+.triangle {
+  width: 200px;
+  border-top: 75px solid transparent;
+  border-right: 100px solid transparent;
+  border-left: 100px solid darkorange;
+  border-bottom: 75px solid darkorange;
+}
+.clip-box {
+  background-color: blanchedalmond;
+  width: 150px;
+  height: 150px;
+  clip-path: xywh(0 5px 100% 75% round 15% 0);
+}
+.pseudo::before {
+  content: '我是::before 文字';
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+}
+.pseudo::after {
+  content: '我是::after 文字';
+  color: rgb(146, 196, 18);
+  font-size: 24px;
+}
+.title {
+  position: relative;
+}
+.title::after {
+  position: absolute;
+  content: '';
+  width: 48px;
+  height: 4px;
+  bottom: -16px;
+  left: 50%;
+  translate: -50% 0;
+  background-color: rgb(253, 18, 18);
+}
+/* 商品列表 */
+.products-gallery {
+  flex-wrap: wrap;
+}
+.product {
+  position: relative;
+  /* overflow: hidden; */
+  width: calc((100% - 80px) / 5);
+  border-radius: 28px;
+  box-shadow: 0 0 15px 0 #2d7c663a;
+}
+.product-img {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 0 15px 0 #2d7c663a;
+}
+.product-img img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.product::before {
+  position: absolute;
+  content: '商城';
+  background-color: #e84b3d;
+  color: white;
+  left: 20px;
+  top: 34px;
+  z-index: 3;
+}
+
+.product::after {
+  position: absolute;
+  content: '';
+  border-top: 2.45px solid #841308;
+  border-right: 2.45px solid #841308;
+  border-left: 2.45px solid transparent;
+  border-bottom: 2.45px solid transparent;
+  top: 58px;
+  left: 20px;
+  z-index: 0;
+}
+.product-img:hover::after {
+  position: absolute;
+  content: '限時特價';
+  background-color: rgba(255, 0, 0, 0.45);
+  color: white;
+  width: 100%;
+  text-align: center;
+  left: 0px;
+  bottom: 0px;
+  z-index: 3;
+}
+.product-img::before {
+  position: absolute;
+  content: 'HOT';
+  background-color: #e84b3d;
+  color: white;
+  transform: rotate(45deg);
+  width: 100px;
+  text-align: center;
+  right: -30px;
+  top: 10px;
+}

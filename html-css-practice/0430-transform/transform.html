@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="transform.css">
+    <title>Transform 練習</title>
+</head>
+
+<body>
+    <main>
+        <a href="https://ithelp.ithome.com.tw/articles/10200713"
+            class="sticky top-9 cursor-pointer max-w-15 py-2 px-4 rounded-md bg-[#5AB0BD] text-white z-2"
+            target="_blank">transform
+            教學</a>
+        <section class="max-w-6xl mx-auto text-center p-5 flex justify-between mb-5">
+            <div class="box box-1 bg-yellow-300 h-25 w-25 content-center">rotate(180 deg)</div>
+            <div class="box box-2 bg-yellow-300 h-25 w-25 content-center">rotate(45 deg)</div>
+            <div class="box box-3 bg-yellow-300 h-25 w-25 content-center">rotate(90 deg)</div>
+        </section>
+        <section class="max-w-6xl mx-auto text-center p-5 flex justify-between mb-5">
+            <div class="box box-4 bg-yellow-300 h-25 w-25 content-center">scale(2, 0.5)</div>
+            <div class="box box-5 bg-yellow-300 h-25 w-25 content-center">skewX(30deg)</div>
+            <div class="box box-6 bg-yellow-300 h-25 w-25 content-center">scale3d(2.5, 1.2, 0.3)</div>
+        </section>
+        <section class="max-w-6xl mx-auto text-center p-5 flex justify-between items-center mb-5">
+            <h2 class="font-semibold text-xl">Border 切出三角形</h2>
+            <div class="triangle"></div>
+            <h2 class="font-semibold text-xl">clip-path 切出不規則圖形</h2>
+            <div class="clip-box"></div>
+        </section>
+        <section class="max-w-6xl mx-auto text-center p-5 flex justify-between mb-5">
+            <h2 class="font-semibold text-xl">偽元素</h2>
+            <div class="pseudo">
+                這是原本的文字
+            </div>
+            <div class="title text-4xl font-bold">歷屆試題</div>
+        </section>
+        <hr>
+        <section class="max-w-[1200px] mx-auto my-5 flex flex-col justify-center gap-5">
+            <h2 class="text-4xl font-bold">熱門商品</h2>
+            <div class="products-gallery flex gap-5">
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+                <div class="product p-6 flex flex-col gap-4 bg-[#D4E2DE]">
+                    <div class="product-img">
+                        <img src="../images/chiikawa-friends.jpeg" alt="">
+                    </div>
+                    <h3 class="product-title text-lg font-semibold">商品標題</h3>
+                    <p>打擊本地下載五年記者包含評估很難有一種經常或是，機構簽名欄目學會基層黃金內存。
+                    </p>
+                    <button class="text-white rounded-lg cursor-pointer bg-[#70B8A2] py-2 px-3 self-end">立即購買</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

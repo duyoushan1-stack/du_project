@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1340c168c8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>List Style 和 Position 練習</title>
+</head>
+
+<body>
+    <main>
+        <section>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </section>
+        <section class="cards-group">
+            <button id="left-btn"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="scroll-area">
+                <div class="card">
+                    <img src="https://picsum.photos/300/200" alt="">
+                    <h2>Card Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente magnam distinctio quis
+                        temporibus
+                        facilis? Dolor expedita ad vel temporibus sed incidunt culpa repellendus itaque ratione quia,
+                        veritatis corrupti, nulla rem.
+                        Cum laudantium deleniti, ut aperiam quis quaerat facilis tenetur accusantium blanditiis et ad
+                        autem?
+                        Porro voluptatibus adipisci unde provident, doloribus ipsa numquam explicabo sequi ipsam
+                        dolores,
+                        eligendi modi aliquid illum.
+                        Beatae corporis ad laborum totam molestiae quia sapiente, maxime praesentium accusantium
+                        perspiciatis quidem mollitia consequuntur odit asperiores tempora. Similique architecto in cum
+                        modi,
+                        natus deserunt reprehenderit amet dolorum officia quidem.
+                        Non ipsam, debitis tempora voluptates voluptate illo tenetur blanditiis libero veritatis!
+                        Voluptate
+                        ipsam natus repellendus impedit aspernatur, cumque esse quod ipsa consequatur nihil enim vero
+                        earum
+                        beatae, quo minima corporis.
+                        Inventore qui odit consectetur debitis? Vero animi sunt libero autem quae voluptatibus
+                        voluptates
+                        vitae aut unde, hic minima omnis reiciendis, illum delectus perferendis quaerat impedit tempore
+                        facere perspiciatis distinctio odit.
+                        Rem tenetur consequuntur delectus incidunt quos ratione voluptatum fugit, obcaecati adipisci
+                        natus
+                        ea quam pariatur sint quas soluta animi, quo ex! Molestias ipsa nemo labore laborum, veniam
+                        harum
+                        blanditiis consectetur.
+                        Vitae obcaecati beatae ipsam, est assumenda omnis quia repellat laboriosam rerum ut labore alias
+                        unde, culpa in! Consequatur odit placeat fuga dignissimos debitis assumenda velit consectetur
+                        cupiditate incidunt? Fugit, nemo.
+                        Dignissimos debitis sint temporibus velit quasi quisquam ipsum impedit eum, sed, qui minus
+                        molestiae
+                        nemo. Nisi assumenda facilis officiis voluptatibus! Quas hic, reprehenderit quae atque quisquam
+                        aliquam cum neque id.
+                        Quod repellendus maiores perspiciatis tenetur! Ducimus molestiae saepe nam exercitationem.
+                        Dolore
+                        voluptate sit ratione nulla commodi sed, magnam aperiam beatae placeat nihil maiores
+                        exercitationem
+                        officiis recusandae laborum et dolores esse?
+                        Molestiae nam distinctio quod, delectus quos dolorum, nesciunt excepturi perspiciatis recusandae
+                        molestias inventore veritatis harum necessitatibus quasi sequi illum labore aliquid amet
+                        adipisci
+                        quam vitae corporis? Commodi hic nam earum?</p>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/300/200" alt="">
+                    <h2>Card Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente magnam distinctio quis
+                        temporibus
+                        facilis? Dolor expedita ad vel temporibus sed incidunt culpa repellendus itaque ratione quia,
+                        veritatis corrupti, nulla rem.
+                        Cum laudantium deleniti, ut aperiam quis quaerat facilis tenetur accusantium blanditiis et ad
+                        autem?
+                        Porro voluptatibus adipisci unde provident, doloribus ipsa numquam explicabo sequi ipsam
+                        dolores,
+                        eligendi modi aliquid illum.
+                        Beatae corporis ad laborum totam molestiae quia sapiente, maxime praesentium accusantium
+                        perspiciatis quidem mollitia consequuntur odit asperiores tempora. Similique architecto in cum
+                        modi,
+                        natus deserunt reprehenderit amet dolorum officia quidem.
+                        Non ipsam, debitis tempora voluptates voluptate illo tenetur blanditiis libero veritatis!
+                        Voluptate
+                        ipsam natus repellendus impedit aspernatur, cumque esse quod ipsa consequatur nihil enim vero
+                        earum
+                        beatae, quo minima corporis.
+                        Inventore qui odit consectetur debitis? Vero animi sunt libero autem quae voluptatibus
+                        voluptates
+                        vitae aut unde, hic minima omnis reiciendis, illum delectus perferendis quaerat impedit tempore
+                        facere perspiciatis distinctio odit.
+                        Rem tenetur consequuntur delectus incidunt quos ratione voluptatum fugit, obcaecati adipisci
+                        natus
+                        ea quam pariatur sint quas soluta animi, quo ex! Molestias ipsa nemo labore laborum, veniam
+                        harum
+                        blanditiis consectetur.
+                        Vitae obcaecati beatae ipsam, est assumenda omnis quia repellat laboriosam rerum ut labore alias
+                        unde, culpa in! Consequatur odit placeat fuga dignissimos debitis assumenda velit consectetur
+                        cupiditate incidunt? Fugit, nemo.
+                        Dignissimos debitis sint temporibus velit quasi quisquam ipsum impedit eum, sed, qui minus
+                        molestiae
+                        nemo. Nisi assumenda facilis officiis voluptatibus! Quas hic, reprehenderit quae atque quisquam
+                        aliquam cum neque id.
+                        Quod repellendus maiores perspiciatis tenetur! Ducimus molestiae saepe nam exercitationem.
+                        Dolore
+                        voluptate sit ratione nulla commodi sed, magnam aperiam beatae placeat nihil maiores
+                        exercitationem
+                        officiis recusandae laborum et dolores esse?
+                        Molestiae nam distinctio quod, delectus quos dolorum, nesciunt excepturi perspiciatis recusandae
+                        molestias inventore veritatis harum necessitatibus quasi sequi illum labore aliquid amet
+                        adipisci
+                        quam vitae corporis? Commodi hic nam earum?</p>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/300/200" alt="">
+                    <h2>Card Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente magnam distinctio quis
+                        temporibus
+                        facilis? Dolor expedita ad vel temporibus sed incidunt culpa repellendus itaque ratione quia,
+                        veritatis corrupti, nulla rem.
+                        Cum laudantium deleniti, ut aperiam quis quaerat facilis tenetur accusantium blanditiis et ad
+                        autem?
+                        Porro voluptatibus adipisci unde provident, doloribus ipsa numquam explicabo sequi ipsam
+                        dolores,
+                        eligendi modi aliquid illum.
+                        Beatae corporis ad laborum totam molestiae quia sapiente, maxime praesentium accusantium
+                        perspiciatis quidem mollitia consequuntur odit asperiores tempora. Similique architecto in cum
+                        modi,
+                        natus deserunt reprehenderit amet dolorum officia quidem.
+                        Non ipsam, debitis tempora voluptates voluptate illo tenetur blanditiis libero veritatis!
+                        Voluptate
+                        ipsam natus repellendus impedit aspernatur, cumque esse quod ipsa consequatur nihil enim vero
+                        earum
+                        beatae, quo minima corporis.
+                        Inventore qui odit consectetur debitis? Vero animi sunt libero autem quae voluptatibus
+                        voluptates
+                        vitae aut unde, hic minima omnis reiciendis, illum delectus perferendis quaerat impedit tempore
+                        facere perspiciatis distinctio odit.
+                        Rem tenetur consequuntur delectus incidunt quos ratione voluptatum fugit, obcaecati adipisci
+                        natus
+                        ea quam pariatur sint quas soluta animi, quo ex! Molestias ipsa nemo labore laborum, veniam
+                        harum
+                        blanditiis consectetur.
+                        Vitae obcaecati beatae ipsam, est assumenda omnis quia repellat laboriosam rerum ut labore alias
+                        unde, culpa in! Consequatur odit placeat fuga dignissimos debitis assumenda velit consectetur
+                        cupiditate incidunt? Fugit, nemo.
+                        Dignissimos debitis sint temporibus velit quasi quisquam ipsum impedit eum, sed, qui minus
+                        molestiae
+                        nemo. Nisi assumenda facilis officiis voluptatibus! Quas hic, reprehenderit quae atque quisquam
+                        aliquam cum neque id.
+                        Quod repellendus maiores perspiciatis tenetur! Ducimus molestiae saepe nam exercitationem.
+                        Dolore
+                        voluptate sit ratione nulla commodi sed, magnam aperiam beatae placeat nihil maiores
+                        exercitationem
+                        officiis recusandae laborum et dolores esse?
+                        Molestiae nam distinctio quod, delectus quos dolorum, nesciunt excepturi perspiciatis recusandae
+                        molestias inventore veritatis harum necessitatibus quasi sequi illum labore aliquid amet
+                        adipisci
+                        quam vitae corporis? Commodi hic nam earum?</p>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/300/200" alt="">
+                    <h2>Card Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente magnam distinctio quis
+                        temporibus
+                        facilis? Dolor expedita ad vel temporibus sed incidunt culpa repellendus itaque ratione quia,
+                        veritatis corrupti, nulla rem.
+                        Cum laudantium deleniti, ut aperiam quis quaerat facilis tenetur accusantium blanditiis et ad
+                        autem?
+                        Porro voluptatibus adipisci unde provident, doloribus ipsa numquam explicabo sequi ipsam
+                        dolores,
+                        eligendi modi aliquid illum.
+                        Beatae corporis ad laborum totam molestiae quia sapiente, maxime praesentium accusantium
+                        perspiciatis quidem mollitia consequuntur odit asperiores tempora. Similique architecto in cum
+                        modi,
+                        natus deserunt reprehenderit amet dolorum officia quidem.
+                        Non ipsam, debitis tempora voluptates voluptate illo tenetur blanditiis libero veritatis!
+                        Voluptate
+                        ipsam natus repellendus impedit aspernatur, cumque esse quod ipsa consequatur nihil enim vero
+                        earum
+                        beatae, quo minima corporis.
+                        Inventore qui odit consectetur debitis? Vero animi sunt libero autem quae voluptatibus
+                        voluptates
+                        vitae aut unde, hic minima omnis reiciendis, illum delectus perferendis quaerat impedit tempore
+                        facere perspiciatis distinctio odit.
+                        Rem tenetur consequuntur delectus incidunt quos ratione voluptatum fugit, obcaecati adipisci
+                        natus
+                        ea quam pariatur sint quas soluta animi, quo ex! Molestias ipsa nemo labore laborum, veniam
+                        harum
+                        blanditiis consectetur.
+                        Vitae obcaecati beatae ipsam, est assumenda omnis quia repellat laboriosam rerum ut labore alias
+                        unde, culpa in! Consequatur odit placeat fuga dignissimos debitis assumenda velit consectetur
+                        cupiditate incidunt? Fugit, nemo.
+                        Dignissimos debitis sint temporibus velit quasi quisquam ipsum impedit eum, sed, qui minus
+                        molestiae
+                        nemo. Nisi assumenda facilis officiis voluptatibus! Quas hic, reprehenderit quae atque quisquam
+                        aliquam cum neque id.
+                        Quod repellendus maiores perspiciatis tenetur! Ducimus molestiae saepe nam exercitationem.
+                        Dolore
+                        voluptate sit ratione nulla commodi sed, magnam aperiam beatae placeat nihil maiores
+                        exercitationem
+                        officiis recusandae laborum et dolores esse?
+                        Molestiae nam distinctio quod, delectus quos dolorum, nesciunt excepturi perspiciatis recusandae
+                        molestias inventore veritatis harum necessitatibus quasi sequi illum labore aliquid amet
+                        adipisci
+                        quam vitae corporis? Commodi hic nam earum?</p>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/300/200" alt="">
+                    <h2>Card Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente magnam distinctio quis
+                        temporibus
+                        facilis? Dolor expedita ad vel temporibus sed incidunt culpa repellendus itaque ratione quia,
+                        veritatis corrupti, nulla rem.
+                        Cum laudantium deleniti, ut aperiam quis quaerat facilis tenetur accusantium blanditiis et ad
+                        autem?
+                        Porro voluptatibus adipisci unde provident, doloribus ipsa numquam explicabo sequi ipsam
+                        dolores,
+                        eligendi modi aliquid illum.
+                        Beatae corporis ad laborum totam molestiae quia sapiente, maxime praesentium accusantium
+                        perspiciatis quidem mollitia consequuntur odit asperiores tempora. Similique architecto in cum
+                        modi,
+                        natus deserunt reprehenderit amet dolorum officia quidem.
+                        Non ipsam, debitis tempora voluptates voluptate illo tenetur blanditiis libero veritatis!
+                        Voluptate
+                        ipsam natus repellendus impedit aspernatur, cumque esse quod ipsa consequatur nihil enim vero
+                        earum
+                        beatae, quo minima corporis.
+                        Inventore qui odit consectetur debitis? Vero animi sunt libero autem quae voluptatibus
+                        voluptates
+                        vitae aut unde, hic minima omnis reiciendis, illum delectus perferendis quaerat impedit tempore
+                        facere perspiciatis distinctio odit.
+                        Rem tenetur consequuntur delectus incidunt quos ratione voluptatum fugit, obcaecati adipisci
+                        natus
+                        ea quam pariatur sint quas soluta animi, quo ex! Molestias ipsa nemo labore laborum, veniam
+                        harum
+                        blanditiis consectetur.
+                        Vitae obcaecati beatae ipsam, est assumenda omnis quia repellat laboriosam rerum ut labore alias
+                        unde, culpa in! Consequatur odit placeat fuga dignissimos debitis assumenda velit consectetur
+                        cupiditate incidunt? Fugit, nemo.
+                        Dignissimos debitis sint temporibus velit quasi quisquam ipsum impedit eum, sed, qui minus
+                        molestiae
+                        nemo. Nisi assumenda facilis officiis voluptatibus! Quas hic, reprehenderit quae atque quisquam
+                        aliquam cum neque id.
+                        Quod repellendus maiores perspiciatis tenetur! Ducimus molestiae saepe nam exercitationem.
+                        Dolore
+                        voluptate sit ratione nulla commodi sed, magnam aperiam beatae placeat nihil maiores
+                        exercitationem
+                        officiis recusandae laborum et dolores esse?
+                        Molestiae nam distinctio quod, delectus quos dolorum, nesciunt excepturi perspiciatis recusandae
+                        molestias inventore veritatis harum necessitatibus quasi sequi illum labore aliquid amet
+                        adipisci
+                        quam vitae corporis? Commodi hic nam earum?</p>
+                </div>
+                <div class="card">
+                    <img src="https://picsum.photos/300/200" alt="">
+                    <h2>Card Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente magnam distinctio quis
+                        temporibus
+                        facilis? Dolor expedita ad vel temporibus sed incidunt culpa repellendus itaque ratione quia,
+                        veritatis corrupti, nulla rem.
+                        Cum laudantium deleniti, ut aperiam quis quaerat facilis tenetur accusantium blanditiis et ad
+                        autem?
+                        Porro voluptatibus adipisci unde provident, doloribus ipsa numquam explicabo sequi ipsam
+                        dolores,
+                        eligendi modi aliquid illum.
+                        Beatae corporis ad laborum totam molestiae quia sapiente, maxime praesentium accusantium
+                        perspiciatis quidem mollitia consequuntur odit asperiores tempora. Similique architecto in cum
+                        modi,
+                        natus deserunt reprehenderit amet dolorum officia quidem.
+                        Non ipsam, debitis tempora voluptates voluptate illo tenetur blanditiis libero veritatis!
+                        Voluptate
+                        ipsam natus repellendus impedit aspernatur, cumque esse quod ipsa consequatur nihil enim vero
+                        earum
+                        beatae, quo minima corporis.
+                        Inventore qui odit consectetur debitis? Vero animi sunt libero autem quae voluptatibus
+                        voluptates
+                        vitae aut unde, hic minima omnis reiciendis, illum delectus perferendis quaerat impedit tempore
+                        facere perspiciatis distinctio odit.
+                        Rem tenetur consequuntur delectus incidunt quos ratione voluptatum fugit, obcaecati adipisci
+                        natus
+                        ea quam pariatur sint quas soluta animi, quo ex! Molestias ipsa nemo labore laborum, veniam
+                        harum
+                        blanditiis consectetur.
+                        Vitae obcaecati beatae ipsam, est assumenda omnis quia repellat laboriosam rerum ut labore alias
+                        unde, culpa in! Consequatur odit placeat fuga dignissimos debitis assumenda velit consectetur
+                        cupiditate incidunt? Fugit, nemo.
+                        Dignissimos debitis sint temporibus velit quasi quisquam ipsum impedit eum, sed, qui minus
+                        molestiae
+                        nemo. Nisi assumenda facilis officiis voluptatibus! Quas hic, reprehenderit quae atque quisquam
+                        aliquam cum neque id.
+                        Quod repellendus maiores perspiciatis tenetur! Ducimus molestiae saepe nam exercitationem.
+                        Dolore
+                        voluptate sit ratione nulla commodi sed, magnam aperiam beatae placeat nihil maiores
+                        exercitationem
+                        officiis recusandae laborum et dolores esse?
+                        Molestiae nam distinctio quod, delectus quos dolorum, nesciunt excepturi perspiciatis recusandae
+                        molestias inventore veritatis harum necessitatibus quasi sequi illum labore aliquid amet
+                        adipisci
+                        quam vitae corporis? Commodi hic nam earum?</p>
+                </div>
+            </div>
+            <button id="right-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        </section>
+        <section class="box-section">
+            <ul class="box-zone">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li class="item13">13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+                <li>24</li>
+                <li>25</li>
+            </ul>
+        </section>
+    </main>
+</body>
+<script>
+    const scrollArea = document.querySelector('.cards-group');
+    const leftBtn = document.getElementById('left-btn');
+    const rightBtn = document.getElementById('right-btn');
+
+    leftBtn.addEventListener('click', () => {
+        scrollArea.scrollBy({
+            left: -300,
+            behavior: 'smooth'
+        });
+    });
+
+    rightBtn.addEventListener('click', () => {
+        scrollArea.scrollBy({
+            left: 300,
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+</html>
