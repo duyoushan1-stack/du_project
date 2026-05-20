@@ -1,0 +1,362 @@
+/* ── Global reset extras ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ── Background glows ── */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.glow-1 {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: -100px;
+  background: radial-gradient(circle, #6366f1, transparent 70%);
+  animation: driftA 18s ease-in-out infinite alternate;
+}
+.glow-2 {
+  width: 500px;
+  height: 500px;
+  bottom: 0;
+  right: -80px;
+  background: radial-gradient(circle, #818cf8, transparent 70%);
+  animation: driftB 22s ease-in-out infinite alternate;
+}
+
+/* ── Noise texture ── */
+.noise {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+@keyframes driftA {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(60px, 40px) scale(1.1);
+  }
+}
+@keyframes driftB {
+  from {
+    transform: translate(0, 0) scale(1.05);
+  }
+  to {
+    transform: translate(-50px, -30px) scale(0.95);
+  }
+}
+
+/* ── Pill badge ── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #a5b4fc;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+/* ── Tab buttons ── */
+.tab-btn {
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid #2a2a38;
+  background: transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background 0.15s,
+    border-color 0.15s,
+    transform 0.1s;
+  white-space: nowrap;
+  user-select: none;
+}
+.tab-btn:hover {
+  color: #e2e8f0;
+  border-color: #3f3f55;
+  background: rgba(255, 255, 255, 0.04);
+}
+.tab-btn.active {
+  background: #4f46e5;
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+}
+
+/* ── Command card ── */
+.cmd-card {
+  background: #16161d;
+  border: 1px solid #2a2a38;
+  border-radius: 16px;
+  padding: 1rem 1.125rem;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    transform 0.12s;
+  animation: fadeIn 0.25s ease both;
+}
+.cmd-card:hover {
+  border-color: #3f3f55;
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.1);
+  transform: translateY(-1px);
+}
+.cmd-card.expanded {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(99, 102, 241, 0.2),
+    0 8px 32px rgba(99, 102, 241, 0.12);
+}
+
+/* ── Card header ── */
+.card-icon-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  font-size: 16px;
+  color: #a5b4fc;
+  transition: background 0.15s;
+}
+.cmd-card:hover .card-icon-wrap {
+  background: rgba(99, 102, 241, 0.18);
+}
+
+.card-chevron {
+  font-size: 16px;
+  color: #475569;
+  transition:
+    transform 0.2s ease,
+    color 0.15s;
+  flex-shrink: 0;
+}
+.cmd-card.expanded .card-chevron {
+  transform: rotate(180deg);
+  color: #818cf8;
+}
+
+/* ── Card body (collapsible) ── */
+.card-body {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #2a2a38;
+  animation: slideDown 0.2s ease both;
+}
+.cmd-card.expanded .card-body {
+  display: block;
+}
+
+/* ── Tip box ── */
+.tip-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(99, 102, 241, 0.07);
+  border-left: 2px solid #6366f1;
+  border-radius: 0 8px 8px 0;
+  padding: 9px 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+.tip-box i {
+  color: #818cf8;
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Code block ── */
+.code-block {
+  background: #0d0d12;
+  border: 1px solid #222230;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.code-block::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1 0%, transparent 100%);
+  opacity: 0.4;
+}
+.code-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+.code-pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #c7d2fe;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.code-comment {
+  color: #374151;
+}
+
+/* ── Copy button ── */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid #2a2a38;
+  background: #16161d;
+  color: #64748b;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.15s,
+    color 0.15s,
+    border-color 0.15s;
+}
+.code-block:hover .copy-btn {
+  opacity: 1;
+}
+.copy-btn:hover {
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+.copy-btn.copied {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+/* ── Tag badges ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-bottom: 6px;
+}
+.tag-tip {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+.tag-warn {
+  background: rgba(245, 158, 11, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.tag-pro {
+  background: rgba(99, 102, 241, 0.12);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* ── Toast notification ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  background: #16161d;
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #34d399;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  pointer-events: none;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95);
+    transform-origin: top;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a38;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f55;
+}
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.6);
+  outline-offset: 2px;
+}
