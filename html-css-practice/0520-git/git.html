@@ -103,27 +103,358 @@
             </p>
         </header>
 
-        <!-- Search -->
-        <div class="relative mb-6">
-            <i
-                class="ti ti-search absolute left-3.5 top-1/2 -translate-y-1/2 theme-icon-muted text-base pointer-events-none"></i>
-            <input id="searchInput" type="text" placeholder="搜尋指令，例如 rebase、stash、cherry-pick…"
-                class="search-input w-full rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none transition font-sans" />
+        <!-- View Switcher -->
+        <div class="flex justify-center mb-8">
+            <div class="inline-flex rounded-xl bg-brand-600/10 p-1 border border-brand-600/20 theme-tab-container">
+                <button id="tabCheatsheet"
+                    class="view-tab-btn active px-5 py-2 rounded-lg text-sm font-medium transition duration-200">
+                    <i class="ti ti-terminal-2 mr-1.5"></i>Git 語法大全
+                </button>
+                <button id="tabPrWorkflow"
+                    class="view-tab-btn px-5 py-2 rounded-lg text-sm font-medium transition duration-200">
+                    <i class="ti ti-git-pull-request mr-1.5"></i>PR 工作流
+                </button>
+            </div>
         </div>
 
-        <!-- Tabs -->
-        <div id="tabBar" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="指令分類"></div>
+        <!-- Cheatsheet View -->
+        <div id="cheatsheetView" class="space-y-6">
+            <!-- Search -->
+            <div class="relative">
+                <i
+                    class="ti ti-search absolute left-3.5 top-1/2 -translate-y-1/2 theme-icon-muted text-base pointer-events-none"></i>
+                <input id="searchInput" type="text" placeholder="搜尋指令，例如 rebase、stash、cherry-pick…"
+                    class="search-input w-full rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none transition font-sans" />
+            </div>
 
-        <!-- Stats row -->
-        <div id="statsRow" class="flex items-center gap-2 mb-5 text-xs theme-muted font-mono"></div>
+            <!-- Tabs -->
+            <div id="tabBar" class="flex flex-wrap gap-2" role="tablist" aria-label="指令分類"></div>
 
-        <!-- Card grid -->
-        <div id="cardContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+            <!-- Stats row -->
+            <div id="statsRow" class="flex items-center gap-2 text-xs theme-muted font-mono"></div>
 
-        <!-- Empty state -->
-        <div id="emptyState" class="hidden flex-col items-center justify-center py-24 text-center">
-            <i class="ti ti-search-off text-4xl theme-icon-muted mb-3"></i>
-            <p class="theme-muted text-sm">找不到相符的指令，請嘗試其他關鍵字</p>
+            <!-- Card grid -->
+            <div id="cardContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+            <!-- Empty state -->
+            <div id="emptyState" class="hidden flex-col items-center justify-center py-24 text-center">
+                <i class="ti ti-search-off text-4xl theme-icon-muted mb-3"></i>
+                <p class="theme-muted text-sm">找不到相符的指令，請嘗試其他關鍵字</p>
+            </div>
+        </div>
+
+        <!-- PR Workflow View -->
+        <div id="prWorkflowView" class="hidden space-y-8 animation-fade-in">
+            <!-- Introduction Card -->
+            <div class="intro-card p-6 rounded-2xl border theme-border bg-card-glow">
+                <div class="flex items-start gap-4">
+                    <div
+                        class="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-600/20 border border-brand-600/30 flex items-center justify-center text-brand-400 text-2xl">
+                        <i class="ti ti-git-pull-request text-brand-400"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold theme-heading mb-2">什麼是 Pull Request (PR)？</h2>
+                        <p class="theme-muted text-sm leading-relaxed mb-4">
+                            在專業的企業開發流程與開源社群中，<strong>你不能直接 push 到 main/master 分支！</strong><br>
+                            所有的代碼變更都必須透過建立 Pull Request 來提報，邀請團隊的其他成員進行 Code Review (代碼審查)，確認品質無誤後，才能合併至主分支。
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs theme-muted">
+                            <div class="flex items-center gap-2"><i
+                                    class="ti ti-circle-check text-brand-400 text-base"></i> 程式碼品質控管：防範 Bug</div>
+                            <div class="flex items-center gap-2"><i
+                                    class="ti ti-circle-check text-brand-400 text-base"></i> 團隊知識共享：相互學習</div>
+                            <div class="flex items-center gap-2"><i
+                                    class="ti ti-circle-check text-brand-400 text-base"></i> 保持主線穩定：自動化測試整合</div>
+                            <div class="flex items-center gap-2"><i
+                                    class="ti ti-circle-check text-brand-400 text-base"></i> 歷史紀錄清晰：利於日後追溯</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Timeline -->
+            <div>
+                <h3 class="text-lg font-semibold theme-heading mb-5 flex items-center gap-2">
+                    <i class="ti ti-timeline text-brand-400"></i> PR 標準協作流程 (九大步驟)
+                </h3>
+                <div class="space-y-6 relative border-l-2 border-brand-600/20 ml-4 pl-6 timeline-container">
+
+                    <!-- Step 1 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">1</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 1：同步主分支並建立功能分支</h4>
+                        <p class="theme-muted text-xs mb-3">在開始任何開發之前，請務必先將本地的 main 分支與遠端倉庫同步，以防與他人衝突。</p>
+                        <div class="code-block relative">
+                            <p class="code-label">指令範例</p>
+                            <pre class="code-pre">git checkout main
+git pull origin main
+git checkout -b feature/team-page</pre>
+                            <button class="copy-btn"
+                                onclick="handleDirectCopy(this, 'git checkout main\ngit pull origin main\ngit checkout -b feature/team-page')">複製</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">2</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 2：開發功能網頁與設計</h4>
+                        <p class="theme-muted text-xs mb-3">依據需求進行開發。例如此處我們新增了 <code
+                                class="theme-code font-mono bg-brand-600/10 px-1 rounded text-brand-400">team.html</code>
+                            及其專屬 CSS 樣式，並確認排版與響應式效果正常。</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">3</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 3：暫存並提交變更 (Commit)</h4>
+                        <p class="theme-muted text-xs mb-3">使用 Conventional Commits 格式撰寫詳細的 Commit 訊息，說明修改的細節與原因。</p>
+                        <div class="code-block relative">
+                            <p class="code-label">指令範例</p>
+                            <pre class="code-pre">git add .
+git commit -m "feat: 新增團隊介紹頁面
+
+- 建立 team.html 展示公司核心團隊成員
+- 新增團隊專用 CSS 樣式與 hover 卡片效果
+- 更新所有頁面導航選單的連結
+- 包含企業核心價值展示區"</pre>
+                            <button class="copy-btn"
+                                onclick="handleDirectCopy(this, 'git add .\ngit commit -m &quot;feat: 新增團隊介紹頁面\n\n- 建立 team.html 展示公司核心團隊成員\n- 新增團隊專用 CSS 樣式與 hover 卡片效果\n- 更新所有頁面導航選單的連結\n- 包含企業核心價值展示區&quot;')">複製</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">4</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 4：推送分支到 GitHub</h4>
+                        <p class="theme-muted text-xs mb-3">將你在本地新增的功能分支推送至 GitHub 遠端倉庫，以供建立 PR。</p>
+                        <div class="code-block relative">
+                            <p class="code-label">指令範例</p>
+                            <pre class="code-pre">git push origin feature/team-page</pre>
+                            <button class="copy-btn"
+                                onclick="handleDirectCopy(this, 'git push origin feature/team-page')">複製</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">5</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 5：在 GitHub 建立 Pull Request</h4>
+                        <p class="theme-muted text-xs mb-3">在瀏覽器前往該 repository，點擊「Compare & pull request」按鈕，填寫 PR
+                            標題與下方提供的 Markdown 格式描述範本並送出。</p>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">6</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 6：進行 Code Review 意見修正</h4>
+                        <p class="theme-muted text-xs mb-3">同事在 PR 的代碼行留言提出優化意見（例如補充圖片 alt 屬性）。直接在本地修改並再次推送至同分支，PR
+                            頁面會自動更新。</p>
+                        <div class="code-block relative">
+                            <p class="code-label">指令範例</p>
+                            <pre class="code-pre"># 依建議修改代碼後暫存並 commit
+git add .
+git commit -m "style: 依據 Review 建議加上圖片 alt 屬性與優化邊距"
+
+# 再次推送，PR 會自動同步更新
+git push origin feature/team-page</pre>
+                            <button class="copy-btn"
+                                onclick="handleDirectCopy(this, 'git add .\ngit commit -m &quot;style: 依據 Review 建議加上圖片 alt 屬性與優化邊距&quot;\ngit push origin feature/team-page')">複製</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 7 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">7</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 7：合併 Pull Request</h4>
+                        <p class="theme-muted text-xs mb-3">獲得同事核准 (Approve) 且 CI 測試通過後，點擊「Merge pull request」將程式碼合併至
+                            main。隨即點擊「Delete branch」清理遠端功能分支。</p>
+                    </div>
+
+                    <!-- Step 8 -->
+                    <div class="relative timeline-item mb-8">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">8</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 8：同步本地端並刪除分支</h4>
+                        <p class="theme-muted text-xs mb-3">切換回本地 main 分支，拉取合併後的最新主線，並安全刪除已完成使命的本地功能分支。</p>
+                        <div class="code-block relative">
+                            <p class="code-label">指令範例</p>
+                            <pre class="code-pre">git checkout main
+git pull origin main
+git branch -d feature/team-page
+git fetch -p</pre>
+                            <button class="copy-btn"
+                                onclick="handleDirectCopy(this, 'git checkout main\ngit pull origin main\ngit branch -d feature/team-page\ngit fetch -p')">複製</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 9 -->
+                    <div class="relative timeline-item">
+                        <span
+                            class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-semibold flex items-center justify-center ring-4 ring-bg-theme">9</span>
+                        <h4 class="text-sm font-semibold theme-heading mb-1">步驟 9：檢查最終歷史線圖</h4>
+                        <p class="theme-muted text-xs mb-3">使用圖形化指令檢查本地主分支是否包含最新 PR 合併的 Commit 節點。</p>
+                        <div class="code-block relative">
+                            <p class="code-label">指令範例</p>
+                            <pre class="code-pre">git log --oneline --graph -5</pre>
+                            <button class="copy-btn"
+                                onclick="handleDirectCopy(this, 'git log --oneline --graph -5')">複製</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PR Template Section -->
+            <div class="pr-template-box p-6 rounded-2xl border theme-border bg-card-glow relative">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold theme-heading flex items-center gap-2">
+                        <i class="ti ti-file-text text-brand-400"></i> 專業 PR 描述範本 (Markdown)
+                    </h3>
+                    <button
+                        class="px-3.5 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-medium transition duration-200 shadow-lg shadow-brand-600/20 flex items-center gap-1.5"
+                        onclick="copyTemplateText(this)">
+                        <i class="ti ti-copy"></i>複製範本
+                    </button>
+                </div>
+                <p class="theme-muted text-xs mb-3">這是一份結構化、高品質的 PR 說明範本，在 GitHub 建立 PR 時可將其貼入描述區，幫助同事快速理解您的修改。</p>
+                <div class="relative rounded-xl overflow-hidden bg-[#0d0d12] border border-[#222230] p-4">
+                    <pre class="text-xs text-[#c7d2fe] font-mono leading-relaxed select-all whitespace-pre-wrap"
+                        id="prMarkdownTemplate">## 📋 功能說明
+<!-- 請簡述此 PR 解決的問題與功能背景 -->
+新增團隊介紹頁面，展示公司核心團隊成員與企業價值觀。
+
+## ✨ 新增功能
+- [x] 團隊成員展示區域
+- [x] 響應式網格佈局
+- [x] 成員資訊卡片設計
+- [x] 企業核心價值展示
+- [x] 導航選單更新
+
+## 🎨 技術實作
+- 使用 CSS Grid 實現響應式佈局
+- 新增 hover 互動效果（上浮與陰影加深）
+- 保持與現有設計風格一致，支援行動裝置瀏覽
+
+## 📸 預覽
+<!-- 可附上截圖或 GIF 錄影 -->
+- 包含 4 位核心團隊成員介紹與企業核心價值觀展示
+
+## 🧪 測試項目
+- [x] 所有頁面導航連結正常跳轉
+- [x] 響應式設計在不同螢幕尺寸正常顯示
+- [x] 新增的 CSS 樣式不影響其他頁面佈局
+
+## 📝 其他說明
+- 此功能完成後，網站將具備完整的企業形象展示功能。</pre>
+                </div>
+            </div>
+
+            <!-- Best Practices & Review Checklists -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- PR Titles -->
+                <div class="p-6 rounded-2xl border theme-border bg-card-glow">
+                    <h3 class="text-base font-semibold theme-heading mb-4 flex items-center gap-2">
+                        <i class="ti ti-message-circle-2 text-brand-400"></i> PR 標題最佳實踐 (Conventional Commits)
+                    </h3>
+                    <div class="space-y-4 text-xs">
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 font-semibold mb-2">✅
+                                推薦寫法 (類型明確)</span>
+                            <ul class="space-y-1.5 theme-muted font-mono list-disc list-inside">
+                                <li>feat: 新增團隊介紹頁面功能</li>
+                                <li>fix: 修復聯絡表單驗證錯誤</li>
+                                <li>style: 改善響應式設計效果</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-block px-2 py-1 rounded bg-rose-500/10 text-rose-400 font-semibold mb-2">❌
+                                糟糕寫法 (模糊不清)</span>
+                            <ul class="space-y-1.5 theme-muted font-mono list-disc list-inside">
+                                <li>更新檔案</li>
+                                <li>修改東西</li>
+                                <li>test</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Review Checklist -->
+                <div class="p-6 rounded-2xl border theme-border bg-card-glow">
+                    <h3 class="text-base font-semibold theme-heading mb-4 flex items-center gap-2">
+                        <i class="ti ti-checkup-list text-brand-400"></i> Code Review 審查五大重點
+                    </h3>
+                    <ul class="space-y-3.5 text-xs theme-muted">
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 font-semibold">1.</span>
+                            <div>
+                                <strong class="theme-heading block">功能性 (Functionality)</strong>
+                                程式是否如預期正常運作？是否能正確解決目標問題？
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 font-semibold">2.</span>
+                            <div>
+                                <strong class="theme-heading block">可讀性與維護性 (Readability)</strong>
+                                程式碼是否乾淨容易理解？命名是否具備良好語意？
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 font-semibold">3.</span>
+                            <div>
+                                <strong class="theme-heading block">一致性 (Style Consistency)</strong>
+                                縮排、格式、架構是否符合團隊的 coding 規範與風格？
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 font-semibold">4.</span>
+                            <div>
+                                <strong class="theme-heading block">安全性 (Security)</strong>
+                                是否存在潛在的安全漏洞，如 SQL 注入、XSS、敏感資訊洩漏等？
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-400 font-semibold">5.</span>
+                            <div>
+                                <strong class="theme-heading block">效能 (Performance)</strong>
+                                是否有不必要的冗餘迴圈？是否存在可優化的設計？
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Daily developer loop -->
+            <div class="p-6 rounded-2xl border theme-border bg-card-glow">
+                <h3 class="text-base font-semibold theme-heading mb-3 flex items-center gap-2">
+                    <i class="ti ti-activity-heartbeat text-brand-400"></i> 企業協作：開發者典型的一天
+                </h3>
+                <p class="theme-muted text-xs leading-relaxed mb-4">
+                    這是大廠或專業研發團隊每天的日常開發節奏，保持此習慣可讓程式分支與協作井然有序：
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 rounded-xl border border-brand-600/10 bg-brand-600/5">
+                        <strong class="theme-heading block mb-1">🌅 1. 早上：同步環境</strong>
+                        <p class="theme-muted leading-relaxed">一早到公司，切到 main 分支，拉取遠端最新代碼並清理本地垃圾分支。</p>
+                    </div>
+                    <div class="p-4 rounded-xl border border-brand-600/10 bg-brand-600/5">
+                        <strong class="theme-heading block mb-1">💻 2. 白天：功能開發與 PR</strong>
+                        <p class="theme-muted leading-relaxed">開功能分支進行開發、本地測試，完成後推上遠端並建立 PR 供同事審核。</p>
+                    </div>
+                    <div class="p-4 rounded-xl border border-brand-600/10 bg-brand-600/5">
+                        <strong class="theme-heading block mb-1">🌆 3. 傍晚：修正、合併與清理</strong>
+                        <p class="theme-muted leading-relaxed">依 Review 建議修正代碼。確認無誤後將分支合併入 main，並刪除該分支。</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <footer

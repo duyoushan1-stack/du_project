@@ -43,6 +43,12 @@ const themeToggle = document.getElementById('themeToggle')
 const themeLabel = document.getElementById('themeLabel')
 const footerTheme = document.getElementById('footerTheme')
 
+// View switcher elements
+const tabCheatsheet = document.getElementById('tabCheatsheet')
+const tabPrWorkflow = document.getElementById('tabPrWorkflow')
+const cheatsheetView = document.getElementById('cheatsheetView')
+const prWorkflowView = document.getElementById('prWorkflowView')
+
 /* ════════════════════════════════════════════════════
    THEME
    ════════════════════════════════════════════════════ */
@@ -103,10 +109,18 @@ function init() {
 
   themeToggle.addEventListener('click', toggleTheme)
 
-  searchInput.addEventListener('input', (e) => {
-    searchQuery = e.target.value.toLowerCase().trim()
-    renderCards()
-  })
+  // View switcher listeners
+  if (tabCheatsheet && tabPrWorkflow) {
+    tabCheatsheet.addEventListener('click', () => switchView('cheatsheet'))
+    tabPrWorkflow.addEventListener('click', () => switchView('prWorkflow'))
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim()
+      renderCards()
+    })
+  }
 
   // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
@@ -379,6 +393,86 @@ function formatCode(code) {
     )
     .join('\n')
 }
+
+/* ════════════════════════════════════════════════════
+   VIEW SWITCHER & PR COPY FUNCTIONS
+   ════════════════════════════════════════════════════ */
+
+function switchView(view) {
+  if (!tabCheatsheet || !tabPrWorkflow || !cheatsheetView || !prWorkflowView) return
+  
+  if (view === 'cheatsheet') {
+    tabCheatsheet.classList.add('active')
+    tabPrWorkflow.classList.remove('active')
+    cheatsheetView.classList.remove('hidden')
+    prWorkflowView.classList.add('hidden')
+  } else {
+    tabCheatsheet.classList.remove('active')
+    tabPrWorkflow.classList.add('active')
+    cheatsheetView.classList.add('hidden')
+    prWorkflowView.classList.remove('hidden')
+  }
+}
+
+function handleDirectCopy(btn, text) {
+  const doSuccess = () => {
+    btn.textContent = '✓ 已複製'
+    btn.classList.add('copied')
+    setTimeout(() => {
+      btn.textContent = '複製'
+      btn.classList.remove('copied')
+    }, 1800)
+    showToast('已複製至剪貼簿 ✓')
+  }
+
+  if (navigator.clipboard) {
+    navigator.clipboard
+      .writeText(text)
+      .then(doSuccess)
+      .catch(() => {
+        fallbackCopy(text)
+        doSuccess()
+      })
+  } else {
+    fallbackCopy(text)
+    doSuccess()
+  }
+}
+
+function copyTemplateText(btn) {
+  const templateEl = document.getElementById('prMarkdownTemplate')
+  if (!templateEl) return
+  const text = templateEl.textContent
+
+  const doSuccess = () => {
+    btn.innerHTML = '<i class="ti ti-check mr-1"></i>已複製'
+    btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700')
+    btn.classList.remove('bg-brand-600', 'hover:bg-brand-700')
+    setTimeout(() => {
+      btn.innerHTML = '<i class="ti ti-copy mr-1"></i>複製範本'
+      btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700')
+      btn.classList.add('bg-brand-600', 'hover:bg-brand-700')
+    }, 1800)
+    showToast('PR 描述範本已複製 ✓')
+  }
+
+  if (navigator.clipboard) {
+    navigator.clipboard
+      .writeText(text)
+      .then(doSuccess)
+      .catch(() => {
+        fallbackCopy(text)
+        doSuccess()
+      })
+  } else {
+    fallbackCopy(text)
+    doSuccess()
+  }
+}
+
+// Bind to window to allow HTML inline onclick access
+window.handleDirectCopy = handleDirectCopy
+window.copyTemplateText = copyTemplateText
 
 /* ════════════════════════════════════════════════════
    BOOTSTRAP
