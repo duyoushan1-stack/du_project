@@ -1,17 +1,107 @@
-/* ── Global reset extras ── */
+/* ════════════════════════════════════════════════════════
+   style.css — Git Cheatsheet
+   Theme: CSS custom properties with .dark / .light on <html>
+   ════════════════════════════════════════════════════════ */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* ── Background glows ── */
+/* ── CSS Variables — Dark (default) ───────────────────── */
+:root {
+  --bg: #0f0f13;
+  --bg-card: #16161d;
+  --bg-code: #0d0d12;
+  --bg-input: #16161d;
+  --bg-tip: rgba(99, 102, 241, 0.07);
+
+  --border: #2a2a38;
+  --border-code: #222230;
+  --border-hover: #3f3f55;
+
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  --text-heading: #ffffff;
+  --text-code: #c7d2fe;
+  --text-comment: #374151;
+  --text-label: #4b5563;
+
+  --glow-opacity: 0.18;
+  --noise-opacity: 0.35;
+
+  --scrollbar-thumb: #2a2a38;
+  --scrollbar-thumb-hover: #3f3f55;
+}
+
+/* ── CSS Variables — Light ─────────────────────────────── */
+html.light {
+  --bg: #f5f5f7;
+  --bg-card: #ffffff;
+  --bg-code: #f0f0f5;
+  --bg-input: #ffffff;
+  --bg-tip: rgba(99, 102, 241, 0.06);
+
+  --border: #e2e2ec;
+  --border-code: #e5e5ef;
+  --border-hover: #c9c9df;
+
+  --text-primary: #1e1e2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #8888aa;
+  --text-heading: #0d0d1a;
+  --text-code: #312e81;
+  --text-comment: #9ca3af;
+  --text-label: #6b7280;
+
+  --glow-opacity: 0.1;
+  --noise-opacity: 0.12;
+
+  --scrollbar-thumb: #d1d1e0;
+  --scrollbar-thumb-hover: #b0b0cc;
+}
+
+/* ── Semantic Tailwind helpers (applied via class) ─────── */
+.theme-bg {
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+.theme-text {
+  color: var(--text-primary);
+}
+.theme-heading {
+  color: var(--text-heading);
+}
+.theme-muted {
+  color: var(--text-muted);
+}
+.theme-border {
+  border-color: var(--border);
+}
+.theme-icon-muted {
+  color: var(--text-muted);
+}
+
+/* ── Smooth theme transition on everything ─────────────── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+/* but NOT transforms or opacity (to avoid fighting animations) */
+
+/* ── Background glows ──────────────────────────────────── */
 .glow {
   position: absolute;
   border-radius: 50%;
   filter: blur(120px);
-  opacity: 0.18;
+  opacity: var(--glow-opacity);
   pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 .glow-1 {
   width: 600px;
@@ -30,14 +120,14 @@
   animation: driftB 22s ease-in-out infinite alternate;
 }
 
-/* ── Noise texture ── */
 .noise {
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
-  opacity: 0.35;
+  opacity: var(--noise-opacity);
   pointer-events: none;
   mix-blend-mode: overlay;
+  transition: opacity 0.4s ease;
 }
 
 @keyframes driftA {
@@ -57,11 +147,10 @@
   }
 }
 
-/* ── Pill badge ── */
+/* ── Pill badge ─────────────────────────────────────────── */
 .pill {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 500;
@@ -72,30 +161,146 @@
   border-radius: 999px;
   padding: 3px 10px;
 }
+html.light .pill {
+  color: #4338ca;
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+}
 
-/* ── Tab buttons ── */
+/* ── kbd style ──────────────────────────────────────────── */
+.kbd {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* ── Theme Toggle Button ────────────────────────────────── */
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  user-select: none;
+}
+
+.toggle-track {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  background: #1e1e2e;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+  flex-shrink: 0;
+}
+html.light .toggle-track {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+}
+
+.toggle-thumb {
+  position: absolute;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s ease;
+}
+html.light .toggle-thumb {
+  transform: translateX(24px);
+  background: #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+.toggle-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.dark-icon {
+  left: 6px;
+  color: #a5b4fc;
+}
+.light-icon {
+  right: 6px;
+  color: #f59e0b;
+}
+
+/* Show only the relevant icon */
+html.dark .light-icon {
+  opacity: 0.35;
+}
+html.dark .dark-icon {
+  opacity: 1;
+}
+html.light .dark-icon {
+  opacity: 0.35;
+}
+html.light .light-icon {
+  opacity: 1;
+}
+
+.toggle-label {
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  min-width: 52px;
+}
+
+/* ── Search input ───────────────────────────────────────── */
+.search-input {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+.search-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* ── Tab buttons ────────────────────────────────────────── */
 .tab-btn {
   font-family: 'Sora', sans-serif;
   font-size: 12px;
   font-weight: 500;
   padding: 5px 14px;
   border-radius: 999px;
-  border: 1px solid #2a2a38;
+  border: 1px solid var(--border);
   background: transparent;
-  color: #94a3b8;
+  color: var(--text-secondary);
   cursor: pointer;
-  transition:
-    color 0.15s,
-    background 0.15s,
-    border-color 0.15s,
-    transform 0.1s;
   white-space: nowrap;
   user-select: none;
 }
 .tab-btn:hover {
-  color: #e2e8f0;
-  border-color: #3f3f55;
-  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: rgba(128, 128, 180, 0.06);
 }
 .tab-btn.active {
   background: #4f46e5;
@@ -103,24 +308,27 @@
   color: #fff;
   box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
 }
+html.light .tab-btn.active {
+  background: #4f46e5;
+  box-shadow: 0 2px 12px rgba(79, 70, 229, 0.3);
+}
 
-/* ── Command card ── */
+/* ── Command card ───────────────────────────────────────── */
 .cmd-card {
-  background: #16161d;
-  border: 1px solid #2a2a38;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 1rem 1.125rem;
   cursor: pointer;
-  transition:
-    border-color 0.18s,
-    box-shadow 0.18s,
-    transform 0.12s;
   animation: fadeIn 0.25s ease both;
 }
 .cmd-card:hover {
-  border-color: #3f3f55;
+  border-color: var(--border-hover);
   box-shadow: 0 4px 24px rgba(99, 102, 241, 0.1);
   transform: translateY(-1px);
+}
+html.light .cmd-card:hover {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
 }
 .cmd-card.expanded {
   border-color: rgba(99, 102, 241, 0.5);
@@ -128,8 +336,13 @@
     0 0 0 1px rgba(99, 102, 241, 0.2),
     0 8px 32px rgba(99, 102, 241, 0.12);
 }
+html.light .cmd-card.expanded {
+  box-shadow:
+    0 0 0 1px rgba(99, 102, 241, 0.3),
+    0 6px 24px rgba(99, 102, 241, 0.1);
+}
 
-/* ── Card header ── */
+/* ── Card icon ──────────────────────────────────────────── */
 .card-icon-wrap {
   flex-shrink: 0;
   display: flex;
@@ -141,8 +354,12 @@
   background: rgba(99, 102, 241, 0.1);
   border: 1px solid rgba(99, 102, 241, 0.2);
   font-size: 16px;
-  color: #a5b4fc;
-  transition: background 0.15s;
+  color: #818cf8;
+}
+html.light .card-icon-wrap {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #4f46e5;
 }
 .cmd-card:hover .card-icon-wrap {
   background: rgba(99, 102, 241, 0.18);
@@ -150,7 +367,7 @@
 
 .card-chevron {
   font-size: 16px;
-  color: #475569;
+  color: var(--text-muted);
   transition:
     transform 0.2s ease,
     color 0.15s;
@@ -161,30 +378,38 @@
   color: #818cf8;
 }
 
-/* ── Card body (collapsible) ── */
+/* ── Card title / desc ──────────────────────────────────── */
+.card-title {
+  color: var(--text-primary);
+}
+.card-desc {
+  color: var(--text-muted);
+}
+
+/* ── Card body ──────────────────────────────────────────── */
 .card-body {
   display: none;
   margin-top: 14px;
   padding-top: 14px;
-  border-top: 1px solid #2a2a38;
+  border-top: 1px solid var(--border);
   animation: slideDown 0.2s ease both;
 }
 .cmd-card.expanded .card-body {
   display: block;
 }
 
-/* ── Tip box ── */
+/* ── Tip box ────────────────────────────────────────────── */
 .tip-box {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  background: rgba(99, 102, 241, 0.07);
+  background: var(--bg-tip);
   border-left: 2px solid #6366f1;
   border-radius: 0 8px 8px 0;
   padding: 9px 12px;
   margin-bottom: 12px;
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 .tip-box i {
@@ -193,11 +418,14 @@
   flex-shrink: 0;
   margin-top: 1px;
 }
+html.light .tip-box i {
+  color: #6366f1;
+}
 
-/* ── Code block ── */
+/* ── Code block ─────────────────────────────────────────── */
 .code-block {
-  background: #0d0d12;
-  border: 1px solid #222230;
+  background: var(--bg-code);
+  border: 1px solid var(--border-code);
   border-radius: 10px;
   padding: 10px 12px;
   margin-bottom: 8px;
@@ -212,25 +440,29 @@
   background: linear-gradient(90deg, #6366f1 0%, transparent 100%);
   opacity: 0.4;
 }
+html.light .code-block::before {
+  opacity: 0.5;
+}
+
 .code-label {
   font-family: 'Sora', sans-serif;
   font-size: 11px;
-  color: #4b5563;
+  color: var(--text-label);
   margin-bottom: 6px;
 }
 .code-pre {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  color: #c7d2fe;
+  color: var(--text-code);
   line-height: 1.75;
   white-space: pre-wrap;
   word-break: break-all;
 }
 .code-comment {
-  color: #374151;
+  color: var(--text-comment);
 }
 
-/* ── Copy button ── */
+/* ── Copy button ────────────────────────────────────────── */
 .copy-btn {
   position: absolute;
   top: 8px;
@@ -240,29 +472,29 @@
   font-weight: 500;
   padding: 3px 9px;
   border-radius: 6px;
-  border: 1px solid #2a2a38;
-  background: #16161d;
-  color: #64748b;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
   cursor: pointer;
   opacity: 0;
-  transition:
-    opacity 0.15s,
-    color 0.15s,
-    border-color 0.15s;
 }
 .code-block:hover .copy-btn {
   opacity: 1;
 }
 .copy-btn:hover {
-  color: #a5b4fc;
+  color: #818cf8;
   border-color: rgba(99, 102, 241, 0.4);
 }
 .copy-btn.copied {
   color: #34d399;
   border-color: rgba(52, 211, 153, 0.4);
 }
+html.light .copy-btn.copied {
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.4);
+}
 
-/* ── Tag badges ── */
+/* ── Tag badges ─────────────────────────────────────────── */
 .tag {
   display: inline-flex;
   align-items: center;
@@ -291,7 +523,23 @@
   border: 1px solid rgba(99, 102, 241, 0.3);
 }
 
-/* ── Toast notification ── */
+html.light .tag-tip {
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+html.light .tag-warn {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+html.light .tag-pro {
+  background: rgba(99, 102, 241, 0.1);
+  color: #4338ca;
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* ── Toast ──────────────────────────────────────────────── */
 .toast {
   position: fixed;
   bottom: 24px;
@@ -300,24 +548,26 @@
   font-size: 12px;
   padding: 9px 16px;
   border-radius: 10px;
-  background: #16161d;
+  background: var(--bg-card);
   border: 1px solid rgba(52, 211, 153, 0.4);
   color: #34d399;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
   opacity: 0;
   transform: translateY(8px);
-  transition:
-    opacity 0.2s,
-    transform 0.2s;
   pointer-events: none;
   z-index: 9999;
+}
+html.light .toast {
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.4);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
 }
 .toast.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── Animations ── */
+/* ── Animations ─────────────────────────────────────────── */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -339,8 +589,18 @@
     transform: none;
   }
 }
+@keyframes themePop {
+  from {
+    transform: scale(0.7) rotate(-15deg);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
 
-/* ── Scrollbar ── */
+/* ── Scrollbar ──────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -348,15 +608,16 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a38;
+  background: var(--scrollbar-thumb);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f55;
+  background: var(--scrollbar-thumb-hover);
 }
 
-/* ── Focus visible ── */
+/* ── Focus ──────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid rgba(99, 102, 241, 0.6);
   outline-offset: 2px;
+  border-radius: 4px;
 }

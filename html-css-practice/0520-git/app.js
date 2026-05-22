@@ -22,11 +22,14 @@ const TAG_ICONS = {
   pro: 'ti-stars',
 }
 
+const STORAGE_KEY = 'git-cheatsheet-theme'
+
 /* ── State ──────────────────────────────────────────── */
 
 let currentTab = 'all'
 let searchQuery = ''
 let toastTimer = null
+let isDark = true // managed by initTheme()
 
 /* ── DOM refs ───────────────────────────────────────── */
 
@@ -36,20 +39,115 @@ const emptyState = document.getElementById('emptyState')
 const statsRow = document.getElementById('statsRow')
 const searchInput = document.getElementById('searchInput')
 const toast = document.getElementById('toast')
+const themeToggle = document.getElementById('themeToggle')
+const themeLabel = document.getElementById('themeLabel')
+const footerTheme = document.getElementById('footerTheme')
 
-/* ── Init ───────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   THEME
+   ════════════════════════════════════════════════════ */
+
+function initTheme() {
+  // Priority: localStorage → system preference → dark
+  const stored = localStorage.getItem(STORAGE_KEY)
+  if (stored) {
+    isDark = stored === 'dark'
+  } else {
+    isDark = !window.matchMedia('(prefers-color-scheme: light)').matches
+  }
+  applyTheme(false) // no animation on first load
+}
+
+function applyTheme(animate = true) {
+  const html = document.documentElement
+
+  if (isDark) {
+    html.classList.add('dark')
+    html.classList.remove('light')
+  } else {
+    html.classList.add('light')
+    html.classList.remove('dark')
+  }
+
+  // Update toggle label
+  themeLabel.textContent = isDark ? '深色模式' : '淺色模式'
+  if (footerTheme) footerTheme.textContent = isDark ? '🌙 dark' : '☀️ light'
+
+  // Animate the icon on toggle
+  if (animate) {
+    const iconEls = themeToggle.querySelectorAll('.toggle-icon')
+    iconEls.forEach((el) => {
+      el.style.animation = 'none'
+      // force reflow
+      void el.offsetWidth
+      el.style.animation = 'themePop .3s cubic-bezier(.34,1.56,.64,1) both'
+    })
+  }
+
+  localStorage.setItem(STORAGE_KEY, isDark ? 'dark' : 'light')
+}
+
+function toggleTheme() {
+  isDark = !isDark
+  applyTheme(true)
+}
+
+/* ════════════════════════════════════════════════════
+   INIT
+   ════════════════════════════════════════════════════ */
 
 function init() {
+  initTheme()
   renderTabs()
   renderCards()
+
+  themeToggle.addEventListener('click', toggleTheme)
 
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.toLowerCase().trim()
     renderCards()
   })
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    // '/' → focus search
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault()
+      searchInput.focus()
+      searchInput.select()
+    }
+    // Escape → clear search
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+      searchInput.blur()
+      searchQuery = ''
+      searchInput.value = ''
+      renderCards()
+    }
+    // 'T' (shift+t) → toggle theme
+    if (
+      e.key === 'T' &&
+      !e.ctrlKey &&
+      !e.metaKey &&
+      document.activeElement !== searchInput
+    ) {
+      toggleTheme()
+    }
+  })
+
+  // System theme change listener
+  window
+    .matchMedia('(prefers-color-scheme: light)')
+    .addEventListener('change', (e) => {
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        isDark = !e.matches
+        applyTheme(true)
+      }
+    })
 }
 
-/* ── Tab rendering ──────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   TABS
+   ════════════════════════════════════════════════════ */
 
 function renderTabs() {
   tabBar.innerHTML = TABS.map(({ id, label }) => {
@@ -87,7 +185,9 @@ function switchTab(tab) {
   renderCards()
 }
 
-/* ── Filter logic ───────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   FILTER
+   ════════════════════════════════════════════════════ */
 
 function getFiltered() {
   return GIT_DATA.filter((d) => {
@@ -105,7 +205,9 @@ function getFiltered() {
   })
 }
 
-/* ── Card rendering ─────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   CARDS
+   ════════════════════════════════════════════════════ */
 
 function renderCards() {
   const filtered = getFiltered()
@@ -115,8 +217,8 @@ function renderCards() {
     (d) => currentTab === 'all' || d.cat === currentTab
   ).length
   statsRow.innerHTML = searchQuery
-    ? `<i class="ti ti-filter text-slate-600"></i> 顯示 <span class="text-slate-400">${filtered.length}</span> / ${total} 個指令組`
-    : `<i class="ti ti-layout-grid text-slate-600"></i> 共 <span class="text-slate-400">${total}</span> 個指令組`
+    ? `<i class="ti ti-filter"></i> 顯示 <span style="color:var(--text-primary)">${filtered.length}</span> / ${total} 個指令組`
+    : `<i class="ti ti-layout-grid"></i> 共 <span style="color:var(--text-primary)">${total}</span> 個指令組`
 
   // Empty state
   const isEmpty = filtered.length === 0
@@ -129,7 +231,6 @@ function renderCards() {
     return
   }
 
-  // Cards — stagger animation via CSS animation-delay
   cardContainer.innerHTML = filtered.map((d, i) => buildCard(d, i)).join('')
   cardContainer.querySelectorAll('.cmd-card').forEach((el, i) => {
     el.style.animationDelay = `${i * 30}ms`
@@ -138,22 +239,26 @@ function renderCards() {
 
 function buildCard(d, index) {
   const tagHTML = d.tag
-    ? `<span class="tag tag-${d.tag}"><i class="ti ${TAG_ICONS[d.tag] ?? ''}" aria-hidden="true"></i>${d.tagLabel}</span>`
+    ? `<span class="tag tag-${d.tag}">
+         <i class="ti ${TAG_ICONS[d.tag] ?? ''}" aria-hidden="true"></i>${d.tagLabel}
+       </span>`
     : ''
 
   const tipHTML = d.tips
-    ? `<div class="tip-box"><i class="ti ti-bulb" aria-hidden="true"></i><span>${d.tips}</span></div>`
+    ? `<div class="tip-box">
+         <i class="ti ti-bulb" aria-hidden="true"></i><span>${d.tips}</span>
+       </div>`
     : ''
 
   const codesHTML = d.codes
     .map(
       (c, ci) => `
-    <div class="code-block" data-code-index="${ci}" data-card-index="${index}">
+    <div class="code-block">
       <p class="code-label">${escHtml(c.label)}</p>
       <pre class="code-pre">${formatCode(c.code)}</pre>
       <button
         class="copy-btn"
-        onclick="handleCopy(this, ${index}, ${ci})"
+        onclick="handleCopy(event, this, ${index}, ${ci})"
         aria-label="複製程式碼"
       >複製</button>
     </div>
@@ -175,8 +280,8 @@ function buildCard(d, index) {
         </div>
         <div class="flex-1 min-w-0">
           ${tagHTML}
-          <h2 class="text-sm font-medium text-slate-100 font-sans mb-1">${d.title}</h2>
-          <p class="text-xs text-slate-500 font-sans leading-relaxed">${d.desc}</p>
+          <h2 class="card-title text-sm font-medium font-sans mb-1">${d.title}</h2>
+          <p class="card-desc text-xs font-sans leading-relaxed">${d.desc}</p>
         </div>
         <i class="ti ti-chevron-down card-chevron" aria-hidden="true"></i>
       </div>
@@ -188,7 +293,9 @@ function buildCard(d, index) {
   `
 }
 
-/* ── Card interaction ───────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   CARD INTERACTION
+   ════════════════════════════════════════════════════ */
 
 function toggleCard(index) {
   const card = document.getElementById(`card-${index}`)
@@ -196,47 +303,56 @@ function toggleCard(index) {
   card.classList.toggle('expanded')
 }
 
-/* ── Copy ───────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   COPY
+   ════════════════════════════════════════════════════ */
 
-function handleCopy(btn, cardIdx, codeIdx) {
-  // Prevent card toggle from firing
+function handleCopy(event, btn, cardIdx, codeIdx) {
   event.stopPropagation()
 
-  // Find original data (account for filtering)
   const filtered = getFiltered()
   const d = filtered[cardIdx]
   if (!d || !d.codes[codeIdx]) return
 
   const text = d.codes[codeIdx].code
-  navigator.clipboard
-    .writeText(text)
-    .then(() => {
-      btn.textContent = '✓ 已複製'
-      btn.classList.add('copied')
-      setTimeout(() => {
-        btn.textContent = '複製'
-        btn.classList.remove('copied')
-      }, 1800)
-      showToast('已複製到剪貼簿')
-    })
-    .catch(() => {
-      // Fallback for older browsers
-      fallbackCopy(text)
-      showToast('已複製到剪貼簿')
-    })
+
+  const doSuccess = () => {
+    btn.textContent = '✓ 已複製'
+    btn.classList.add('copied')
+    setTimeout(() => {
+      btn.textContent = '複製'
+      btn.classList.remove('copied')
+    }, 1800)
+    showToast('已複製到剪貼簿 ✓')
+  }
+
+  if (navigator.clipboard) {
+    navigator.clipboard
+      .writeText(text)
+      .then(doSuccess)
+      .catch(() => {
+        fallbackCopy(text)
+        doSuccess()
+      })
+  } else {
+    fallbackCopy(text)
+    doSuccess()
+  }
 }
 
 function fallbackCopy(text) {
   const el = document.createElement('textarea')
   el.value = text
-  el.style.cssText = 'position:fixed;top:-999px;left:-999px'
+  el.style.cssText = 'position:fixed;top:-999px;left:-999px;opacity:0'
   document.body.appendChild(el)
   el.select()
   document.execCommand('copy')
   document.body.removeChild(el)
 }
 
-/* ── Toast ──────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   TOAST
+   ════════════════════════════════════════════════════ */
 
 function showToast(message) {
   toast.textContent = message
@@ -245,16 +361,14 @@ function showToast(message) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 2200)
 }
 
-/* ── Helpers ────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   HELPERS
+   ════════════════════════════════════════════════════ */
 
 function escHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
-/**
- * Highlight comment lines (starting with #) in a different colour.
- * Returns HTML string for use inside <pre>.
- */
 function formatCode(code) {
   return escHtml(code)
     .split('\n')
@@ -266,21 +380,8 @@ function formatCode(code) {
     .join('\n')
 }
 
-/* ── Keyboard shortcut: / to focus search ──────────── */
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === '/' && document.activeElement !== searchInput) {
-    e.preventDefault()
-    searchInput.focus()
-  }
-  if (e.key === 'Escape' && document.activeElement === searchInput) {
-    searchInput.blur()
-    searchQuery = ''
-    searchInput.value = ''
-    renderCards()
-  }
-})
-
-/* ── Bootstrap ──────────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   BOOTSTRAP
+   ════════════════════════════════════════════════════ */
 
 document.addEventListener('DOMContentLoaded', init)

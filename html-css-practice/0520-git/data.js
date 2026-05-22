@@ -69,18 +69,18 @@ git config --global core.autocrlf true   # Windows`,
   {
     cat: 'branch',
     icon: 'ti-git-branch',
-    title: '分支建立 & 切換',
-    desc: '快速建立、切換、重新命名分支',
+    title: '分支建立 & 切換 & 強制移動',
+    desc: '快速建立、切換、重命名分支，或強制調整分支指針位置',
     tag: 'tip',
     tagLabel: '常用',
-    tips: '使用 feature/、fix/、chore/ 前綴讓分支一目了然。',
+    tips: '使用 feature/、fix/、chore/ 前綴讓分支一目了然。可以用 -f 強制分支對齊特定目標。',
     codes: [
       {
         label: '建立並切換分支（推薦 Git 2.23+）',
         code: `git switch -c feature/my-feature`,
       },
       {
-        label: '舊語法（等效）',
+        label: '舊語法：從既有分支建立並切換過去',
         code: `git checkout -b feature/my-feature`,
       },
       {
@@ -90,6 +90,11 @@ git config --global core.autocrlf true   # Windows`,
       {
         label: '重新命名當前分支',
         code: `git branch -m old-name new-name`,
+      },
+      {
+        label:
+          '將既有 branch 移動 to 別的 branch 的位置（強制覆蓋本地分支指針）',
+        code: `git branch -f <想移動的分支名稱> <目的地分支名稱>\n# 範例：將本地的 river_branch 強制對齊到 master 的最新位置\ngit branch -f river_branch master`,
       },
       {
         label: '列出所有分支（含遠端）',
@@ -253,8 +258,8 @@ git restore .       # 全部`,
         code: `git reset --soft HEAD~1`,
       },
       {
-        label: 'mixed reset（保留變更至工作目錄）',
-        code: `git reset HEAD~1`,
+        label: 'mixed reset（還原最近一次 commit，變更保留至工作目錄）',
+        code: `git reset HEAD~1\n# 亦可使用相對節點：git reset HEAD^`,
       },
       {
         label: 'hard reset（完全捨棄，不可逆）',
@@ -275,17 +280,17 @@ git restore .       # 全部`,
   {
     cat: 'remote',
     icon: 'ti-cloud',
-    title: 'Remote 管理',
-    desc: '新增、修改、查看遠端倉庫連結',
+    title: 'Remote 管理 & 共同開發',
+    desc: '新增、修改、查看遠端倉庫連結與接手分支',
     tag: '',
     tagLabel: '',
     codes: [
       {
-        label: '查看遠端',
+        label: '查看遠端（含名稱和 URL）',
         code: `git remote -v`,
       },
       {
-        label: '新增遠端',
+        label: '新增遠端倉庫',
         code: `git remote add origin https://github.com/user/repo.git`,
       },
       {
@@ -297,6 +302,10 @@ git restore .       # 全部`,
         code: `git push -u origin main`,
       },
       {
+        label: '接手/一同開發遠端既有分支',
+        code: `git pull\ngit checkout <遠端分支名稱>`,
+      },
+      {
         label: '抓取遠端所有分支並清除已刪除的',
         code: `git fetch --all --prune`,
       },
@@ -305,23 +314,32 @@ git restore .       # 全部`,
   {
     cat: 'remote',
     icon: 'ti-arrows-exchange',
-    title: 'Push / Pull 技巧',
-    desc: '安全地同步遠端，避免衝突',
+    title: 'Push / Pull 多人協作衝突技巧',
+    desc: '安全同步遠端變更，優雅處理團隊協作的 Commit 衝突',
     tag: 'tip',
-    tagLabel: '常用',
-    tips: 'force-with-lease 比 force 安全：如果遠端有別人的新 commit，會拒絕推送。',
+    tagLabel: '核心常用',
+    tips: '多人協作同 branch 時，絕不建議輕易使用 push -f 覆蓋，否則會覆蓋同事的程式碼。',
     codes: [
       {
         label: '推送當前分支',
         code: `git push`,
       },
       {
-        label: '強制推送（整理後的 rebase，安全版）',
-        code: `git push --force-with-lease`,
+        label: '多人協作同 branch，Push 發現遠端已有新 Commit 時（推薦）',
+        code: `git pull --rebase\n# 備註：若有 conflict (檔案衝突)，在本地解完衝突確認保留內容後，即可 git push`,
       },
       {
         label: '拉取並 rebase（保持線性歷史）',
         code: `git pull --rebase origin main`,
+      },
+      {
+        label:
+          '強制推送（整理後的 rebase，安全版，若遠端有他人新 commit 會拒推）',
+        code: `git push --force-with-lease`,
+      },
+      {
+        label: '危險操作：暴力強制覆蓋遠端分支',
+        code: `git push -f\n# 注意：多人協作同 branch 時請勿使用，會覆蓋同事的代碼！`,
       },
       {
         label: '只抓取不合併',
@@ -333,20 +351,24 @@ git restore .       # 全部`,
   /* ── Log ─────────────────────────────────────────── */
   {
     cat: 'log',
-    icon: 'ti-chart-tree',
-    title: '美化 git log',
-    desc: '讓分支歷史清晰直觀，一眼看懂走向',
+    icon: 'ti-sitemap',
+    title: '美化 git log & 版本分析',
+    desc: '讓分支歷史清晰直觀，一眼看懂走向與 PR 內容',
     tag: 'pro',
     tagLabel: '必會',
     tips: '設定 alias lg 後，git lg 就能一眼看清所有分支走向。',
     codes: [
       {
-        label: '圖形化顯示所有分支',
+        label: '圖形化顯示所有分支（一行簡短模式）',
         code: `git log --oneline --graph --decorate --all`,
       },
       {
         label: '完整格式加作者與日期（彩色）',
         code: `git log --graph --pretty=format:'%C(yellow)%h%Creset %C(blue)%an%Creset %s %C(green)(%ar)%Creset' --all`,
+      },
+      {
+        label: '查看兩個標籤（Tag）或 Commit 之間增加了哪些 PR/紀錄',
+        code: `git log <old_tag_name>..<new_tag_name> --pretty='%s' --reverse\n# 範例：git log 20200909..20200913 --pretty='%s' --reverse`,
       },
       {
         label: '設定 alias lg（一次設定，永久使用）',
@@ -365,14 +387,18 @@ git restore .       # 全部`,
   {
     cat: 'log',
     icon: 'ti-search',
-    title: 'git diff & blame',
-    desc: '找出誰、何時、改了什麼',
+    title: 'git diff & blame 差異比對',
+    desc: '找出誰、何時、改了什麼，精確比對代碼歷史',
     tag: '',
     tagLabel: '',
     codes: [
       {
         label: '查看兩個分支的差異',
         code: `git diff main..feature/my-feature`,
+      },
+      {
+        label: '查看兩個 commit 之間所有檔案的差異',
+        code: `git diff <commit1>..<commit2>\n# 範例：git diff 57cb9613c..77b628f47`,
       },
       {
         label: '查看某個 commit 的改動',
@@ -393,11 +419,11 @@ git restore .       # 全部`,
   {
     cat: 'advanced',
     icon: 'ti-git-cherry-pick',
-    title: 'git cherry-pick',
+    title: 'git cherry-pick 撿特定提交',
     desc: '將特定 commit 複製到當前分支，不帶整個歷史',
     tag: 'pro',
     tagLabel: '進階',
-    tips: 'cherry-pick 適合從 hotfix 分支把修復帶回 develop，避免整個分支合併。',
+    tips: 'cherry-pick 適合從 hotfix 分支把修復帶回 develop，避免整個分支合併。可以用 git cherry-pick -h 查詢更多參數。',
     codes: [
       {
         label: 'cherry-pick 單一 commit',
@@ -413,8 +439,7 @@ git restore .       # 全部`,
       },
       {
         label: '解完衝突後繼續',
-        code: `# 解完衝突後：
-git cherry-pick --continue`,
+        code: `# 解完衝突後：\ngit cherry-pick --continue`,
       },
       {
         label: '放棄 cherry-pick',
@@ -425,29 +450,30 @@ git cherry-pick --continue`,
   {
     cat: 'advanced',
     icon: 'ti-package-import',
-    title: 'git stash',
+    title: 'git stash 工作狀態暫存',
     desc: '臨時保存工作進度，隨時切換任務',
     tag: 'tip',
     tagLabel: '常用',
+    tips: '當事情做到一半突然需要切換分支處理 Bug，stash 是最佳首選。',
     codes: [
       {
-        label: '暫存目前所有變更（含訊息）',
-        code: `git stash push -m "wip: 登入功能進行中"`,
+        label: '暫存目前所有變更（含訊息與未追蹤檔案，推薦寫法）',
+        code: `git stash save -u "儲存的說明訊息"\n# 亦可使用新版：git stash push -m "wip: 說明"`,
       },
       {
         label: '查看 stash 列表',
         code: `git stash list`,
       },
       {
-        label: '套用最新 stash 並保留',
-        code: `git stash apply`,
+        label: '套用指定 stash 並保留紀錄',
+        code: `git stash apply stash@{0}`,
       },
       {
-        label: '套用並移除最新 stash',
-        code: `git stash pop`,
+        label: '套用指定 stash 並從列表中移除',
+        code: `git stash pop stash@{0}`,
       },
       {
-        label: '刪除特定 stash',
+        label: '刪除特定 stash 紀錄',
         code: `git stash drop stash@{0}`,
       },
     ],
@@ -456,7 +482,7 @@ git cherry-pick --continue`,
     cat: 'advanced',
     icon: 'ti-tag',
     title: 'git tag 版本標記',
-    desc: '語意化版本標籤管理（SemVer）',
+    desc: '語意化版本標籤管理（SemVer）與遠端同步',
     tag: '',
     tagLabel: '',
     codes: [
@@ -465,31 +491,30 @@ git cherry-pick --continue`,
         code: `git tag -a v1.0.0 -m "Release v1.0.0"`,
       },
       {
-        label: '建立輕量標籤',
-        code: `git tag v1.0.0`,
+        label: '建立輕量標籤（直接在當前節點標記日期或版本）',
+        code: `git tag 20260520`,
       },
       {
-        label: '推送所有標籤到遠端',
+        label: '推送所有本地標籤到遠端庫',
         code: `git push origin --tags`,
       },
       {
         label: '刪除本地與遠端標籤',
-        code: `git tag -d v1.0.0
-git push origin --delete v1.0.0`,
+        code: `git tag -d v1.0.0\ngit push origin --delete v1.0.0`,
       },
     ],
   },
   {
     cat: 'advanced',
     icon: 'ti-tool',
-    title: 'git reflog',
-    desc: '後悔藥：找回被刪除或重置的 commit',
+    title: 'git reflog 安全救命藥',
+    desc: '找回被刪除或重置的 commit，操作的終極後悔藥',
     tag: 'warn',
     tagLabel: '救命',
-    tips: 'reflog 是本地記錄，預設保留 90 天。不論什麼操作都有機會還原。',
+    tips: 'reflog 是本地記錄，預設保留 90 天。不論什麼操作（即使是毀滅性的 hard reset）都有機會還原。',
     codes: [
       {
-        label: '查看所有操作記錄',
+        label: '查看所有歷史操作記錄',
         code: `git reflog`,
       },
       {
@@ -498,8 +523,7 @@ git push origin --delete v1.0.0`,
       },
       {
         label: '找回刪掉的分支',
-        code: `# 從 reflog 找到 commit hash 後：
-git checkout -b recovered-branch <hash>`,
+        code: `# 從 reflog 找到 commit hash 後：\ngit checkout -b recovered-branch <hash>`,
       },
     ],
   },

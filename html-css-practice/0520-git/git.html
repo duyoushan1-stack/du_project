@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" class="dark">
 
 <head>
     <meta charset="UTF-8" />
@@ -43,20 +43,16 @@
                             700: '#4338ca',
                             900: '#312e81',
                         },
-                        surface: {
-                            DEFAULT: '#0f0f13',
-                            card: '#16161d',
-                            border: '#2a2a38',
-                            hover: '#1e1e2a',
-                        }
                     },
                     animation: {
                         'fade-in': 'fadeIn .25s ease both',
                         'slide-down': 'slideDown .2s ease both',
+                        'theme-pop': 'themePop .3s cubic-bezier(.34,1.56,.64,1) both',
                     },
                     keyframes: {
                         fadeIn: { from: { opacity: 0, transform: 'translateY(6px)' }, to: { opacity: 1, transform: 'none' } },
                         slideDown: { from: { opacity: 0, transform: 'scaleY(.95)', transformOrigin: 'top' }, to: { opacity: 1, transform: 'none' } },
+                        themePop: { from: { transform: 'scale(.7) rotate(-15deg)', opacity: 0 }, to: { transform: 'none', opacity: 1 } },
                     }
                 }
             }
@@ -64,7 +60,7 @@
     </script>
 </head>
 
-<body class="bg-surface text-slate-200 font-sans antialiased min-h-screen">
+<body class="theme-bg theme-text font-sans antialiased min-h-screen transition-colors duration-300">
 
     <!-- ── Background decoration ── -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
@@ -78,47 +74,62 @@
 
         <!-- Hero -->
         <header class="mb-10">
-            <div class="flex items-center gap-3 mb-3">
-                <span
-                    class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-600/20 border border-brand-600/30">
-                    <i class="ti ti-brand-git text-brand-400 text-xl"></i>
-                </span>
-                <div class="pill">2026 Edition</div>
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-3">
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-600/20 border border-brand-600/30">
+                        <i class="ti ti-brand-git text-brand-400 text-xl"></i>
+                    </span>
+                    <div class="pill">2026 Edition</div>
+                </div>
+
+                <!-- Theme toggle -->
+                <button id="themeToggle" aria-label="切換深色 / 淺色模式" class="theme-toggle-btn" title="切換深色 / 淺色模式">
+                    <span class="toggle-track">
+                        <span class="toggle-icon dark-icon"><i class="ti ti-moon-stars"></i></span>
+                        <span class="toggle-icon light-icon"><i class="ti ti-sun"></i></span>
+                        <span class="toggle-thumb"></span>
+                    </span>
+                    <span class="toggle-label" id="themeLabel">深色模式</span>
+                </button>
             </div>
-            <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-2">
+
+            <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight theme-heading mb-2">
                 Git 常用語法大全
             </h1>
-            <p class="text-slate-400 text-sm leading-relaxed max-w-xl">
+            <p class="theme-muted text-sm leading-relaxed max-w-xl">
                 涵蓋 config、restore、commit、cherry-pick，著重讓分支美觀好操作。<br>
-                點擊卡片展開指令，支援搜尋 &amp; 一鍵複製。
+                點擊卡片展開指令，支援搜尋 &amp; 一鍵複製。按 <kbd class="kbd">/</kbd> 快速聚焦搜尋。
             </p>
         </header>
 
         <!-- Search -->
         <div class="relative mb-6">
             <i
-                class="ti ti-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-base pointer-events-none"></i>
+                class="ti ti-search absolute left-3.5 top-1/2 -translate-y-1/2 theme-icon-muted text-base pointer-events-none"></i>
             <input id="searchInput" type="text" placeholder="搜尋指令，例如 rebase、stash、cherry-pick…"
-                class="w-full bg-surface-card border border-surface-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-brand-600/60 focus:ring-1 focus:ring-brand-600/30 transition font-sans" />
+                class="search-input w-full rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none transition font-sans" />
         </div>
 
         <!-- Tabs -->
         <div id="tabBar" class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="指令分類"></div>
 
         <!-- Stats row -->
-        <div id="statsRow" class="flex items-center gap-2 mb-5 text-xs text-slate-500 font-mono"></div>
+        <div id="statsRow" class="flex items-center gap-2 mb-5 text-xs theme-muted font-mono"></div>
 
         <!-- Card grid -->
         <div id="cardContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
 
         <!-- Empty state -->
         <div id="emptyState" class="hidden flex-col items-center justify-center py-24 text-center">
-            <i class="ti ti-search-off text-4xl text-slate-600 mb-3"></i>
-            <p class="text-slate-500 text-sm">找不到相符的指令，請嘗試其他關鍵字</p>
+            <i class="ti ti-search-off text-4xl theme-icon-muted mb-3"></i>
+            <p class="theme-muted text-sm">找不到相符的指令，請嘗試其他關鍵字</p>
         </div>
 
-        <footer class="mt-16 border-t border-surface-border pt-6 text-center text-xs text-slate-600 font-mono">
-            git cheatsheet · built with Tailwind CSS · 2026
+        <footer
+            class="mt-16 border-t theme-border pt-6 flex items-center justify-between text-xs theme-muted font-mono">
+            <span>git cheatsheet · built with Tailwind CSS · 2026</span>
+            <span id="footerTheme" class="opacity-60"></span>
         </footer>
     </div>
 
